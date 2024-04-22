@@ -5,15 +5,46 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FEFEFE"
+    android:backgroundTint="#FEFEFE"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/ivMainLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnMainLog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fclogoslogan" />
+
+    <Button
+        android:id="@+id/btnMainLog"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#FDFDFD"
+        android:text="Login"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnMainSignUp"
+        app:layout_constraintEnd_toEndOf="@+id/btnMainSignUp"
+        app:layout_constraintStart_toStartOf="@+id/btnMainSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/ivMainLogo"
+        app:strokeColor="#6279E3"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/btnMainSignUp"
+        android:layout_width="174dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="86dp"
+        android:backgroundTint="#6279E2"
+        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnMainLog" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
