@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "712530321625",
+    "project_id": "focusclock-f4cb9",
+    "storage_bucket": "focusclock-f4cb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712530321625:android:28f3d9638a86ff3f739ec8",
+        "android_client_info": {
+          "package_name": "com.example.focusclock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUwXr5-ECw6ZOvbVMWb-Tge5Ozbf3vWjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
