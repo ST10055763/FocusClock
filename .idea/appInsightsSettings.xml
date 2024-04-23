@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.focusclock" />
+                  <option name="mobileSdkAppId" value="1:712530321625:android:28f3d9638a86ff3f739ec8" />
+                  <option name="projectId" value="focusclock-f4cb9" />
+                  <option name="projectNumber" value="712530321625" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
