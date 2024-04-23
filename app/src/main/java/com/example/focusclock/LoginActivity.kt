@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var  forgotPasswordLabel: TextView
+    private lateinit var signUpLabel: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,10 +25,16 @@ class LoginActivity : AppCompatActivity() {
         }
 
         forgotPasswordLabel = findViewById(R.id.tvLogForgotPass)
+        signUpLabel = findViewById(R.id.tvLogSignUp)
 
         forgotPasswordLabel.setOnClickListener{
             var forgotPassIntent = Intent(this, ForgotPasswordActivity::class.java)
             startActivity(forgotPassIntent)
+        }
+
+        signUpLabel.setOnClickListener{
+            var signUpIntent = Intent(this, SignInActivity::class.java)
+            startActivity(signUpIntent)
         }
     }
 }
