@@ -79,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_SHORT).show()
+                // add redirect to home screen here
             } else
                 Toast.makeText(this, "Log In failed ", Toast.LENGTH_SHORT).show()
         }
