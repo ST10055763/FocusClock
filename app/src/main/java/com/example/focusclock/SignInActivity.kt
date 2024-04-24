@@ -14,10 +14,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-//import com.google.firebase.firestore.FirebaseFirestore
-
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignInActivity : AppCompatActivity() {
+
     lateinit var SignUpEmail: EditText
     lateinit var SignUpPassword: EditText
     lateinit var signUpBtn: Button
@@ -27,7 +27,10 @@ class SignInActivity : AppCompatActivity() {
     lateinit var SignUpMaxGoals : EditText
     lateinit var SignUpMinGoals : EditText
 
-    lateinit var auth: FirebaseAuth
+    // declare firebase variables needed
+    private lateinit var auth: FirebaseAuth
+    private val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,9 +40,16 @@ class SignInActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // View Bindings
         SignUpEmail = findViewById(R.id.SUEmailTxt)
         SignUpPassword = findViewById(R.id.SUPasswordTxt)
         signUpBtn = findViewById(R.id.SignUpBtn)
+        SignUpFullname = findViewById(R.id.SUFullNameTxt)
+        SignUpPhoneNumber = findViewById(R.id.SUPhoneTxt)
+        SignUpConfirmPass = findViewById(R.id.SUConfirmPasswordTxt)
+        SignUpMaxGoals = findViewById(R.id.SUMaxGoalsTxt)
+        SignUpMinGoals = findViewById(R.id.SUMinGoalsTxt)
 
         auth = Firebase.auth
 
