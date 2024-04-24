@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/FloatingBackBtn" />
 
     <EditText
-        android:id="@+id/FullNameTxt"
+        android:id="@+id/SUFullNameTxt"
         android:layout_width="284dp"
         android:layout_height="0dp"
         android:layout_marginStart="63dp"
@@ -58,7 +58,7 @@
         app:srcCompat="@color/fcBlue" />
 
     <EditText
-        android:id="@+id/EmailTxt"
+        android:id="@+id/SUEmailTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
@@ -68,7 +68,7 @@
         android:inputType="textEmailAddress"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FullNameTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUFullNameTxt" />
 
     <TextView
         android:id="@+id/textView7"
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FullNameTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUFullNameTxt" />
 
     <Button
         android:id="@+id/SignUpBtn"
@@ -91,10 +91,10 @@
         android:backgroundTint="#FF6279E2"
         android:text="Sign-Up"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MaxGoalsTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUMaxGoalsTxt" />
 
     <EditText
-        android:id="@+id/PhoneTxt"
+        android:id="@+id/SUPhoneTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
@@ -104,10 +104,10 @@
         android:inputType="phone"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUEmailTxt" />
 
     <EditText
-        android:id="@+id/PasswordTxt"
+        android:id="@+id/SUPasswordTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
@@ -117,10 +117,10 @@
         android:inputType="textPassword"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUPhoneTxt" />
 
     <EditText
-        android:id="@+id/ConfirmPasswordTxt"
+        android:id="@+id/SUConfirmPasswordTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
@@ -130,10 +130,10 @@
         android:inputType="textPassword"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUPasswordTxt" />
 
     <EditText
-        android:id="@+id/MinGoalsTxt"
+        android:id="@+id/SUMinGoalsTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
@@ -143,10 +143,10 @@
         android:inputType="text"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUConfirmPasswordTxt" />
 
     <EditText
-        android:id="@+id/MaxGoalsTxt"
+        android:id="@+id/SUMaxGoalsTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
@@ -156,7 +156,7 @@
         android:inputType="text"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MinGoalsTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUMinGoalsTxt" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/FloatingBackBtn"
