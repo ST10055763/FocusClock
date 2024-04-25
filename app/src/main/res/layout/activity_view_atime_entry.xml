@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewATimeEntryActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="297dp"
+        android:layout_height="457dp"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="152dp"
+        tools:srcCompat="@color/backgroundGrey" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="265dp"
+        android:layout_height="49dp"
+        android:text="View An Entry"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="58dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="194dp"
+        android:layout_height="19dp"
+        android:text="View a Specific Time Entry"
+        android:textColor="#444749"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="105dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Project Name:"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="174dp" />
+
+    <EditText
+        android:id="@+id/ViewEntryProjectNametxt"
+        android:layout_width="284dp"
+        android:layout_height="39dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Project name"
+        android:inputType="text"
+        android:text=""
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="202dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
