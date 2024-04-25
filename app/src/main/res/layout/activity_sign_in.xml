@@ -10,68 +10,80 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="265dp"
-        android:layout_height="80dp"
+        android:layout_width="269dp"
+        android:layout_height="66dp"
         android:layout_marginStart="73dp"
         android:layout_marginTop="82dp"
+        android:layout_marginEnd="73dp"
         android:text="Let's Get Started"
         android:textSize="34sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/SUFullNameTxt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="28dp"
         android:layout_marginBottom="528dp"
         android:text="Create your Focus Clock account"
         android:textColor="#444749"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/FloatingBackBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/SUFloatButRet" />
 
     <EditText
-        android:id="@+id/FullNameTxt"
-        android:layout_width="284dp"
+        android:id="@+id/SUFullNameTxt"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="162dp"
-        android:layout_marginBottom="472dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="471dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="500dp"
+        android:layout_width="412dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
         android:backgroundTint="#FDFDFD"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/SUFullNameTxt"
         app:srcCompat="@color/fcBlue" />
 
     <EditText
-        android:id="@+id/EmailTxt"
+        android:id="@+id/SUEmailTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="13dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/SUPhoneTxt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FullNameTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUFullNameTxt" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/SUReturnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
@@ -79,96 +91,118 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FullNameTxt" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/SignUpBtn"
         android:layout_width="123dp"
         android:layout_height="49dp"
         android:layout_marginStart="144dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="18dp"
         android:backgroundTint="#FF6279E2"
         android:text="Sign-Up"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MaxGoalsTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUMaxGoalsTxt" />
 
     <EditText
-        android:id="@+id/PhoneTxt"
+        android:id="@+id/SUPhoneTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Phone"
         android:inputType="phone"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/SUPasswordTxt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUEmailTxt" />
 
     <EditText
-        android:id="@+id/PasswordTxt"
+        android:id="@+id/SUPasswordTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="11dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/SUConfirmPasswordTxt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUPhoneTxt" />
 
     <EditText
-        android:id="@+id/ConfirmPasswordTxt"
+        android:id="@+id/SUConfirmPasswordTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/SUMinGoalsTxt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUPasswordTxt" />
 
     <EditText
-        android:id="@+id/MinGoalsTxt"
+        android:id="@+id/SUMinGoalsTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:hint="Set Min Goal Hours"
-        android:inputType="text"
+        android:inputType="number"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/SUMaxGoalsTxt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUConfirmPasswordTxt" />
 
     <EditText
-        android:id="@+id/MaxGoalsTxt"
+        android:id="@+id/SUMaxGoalsTxt"
         android:layout_width="284dp"
         android:layout_height="50dp"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="Set Max Goal Hours"
-        android:inputType="text"
+        android:inputType="number"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/SignUpBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MinGoalsTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/SUMinGoalsTxt" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/FloatingBackBtn"
+        android:id="@+id/SUFloatButRet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        android:contentDescription="back"
         android:layout_marginTop="13dp"
+        android:layout_marginEnd="342dp"
         android:layout_marginBottom="57dp"
         android:clickable="true"
+        android:contentDescription="back"
         app:backgroundTint="#6279E1"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
