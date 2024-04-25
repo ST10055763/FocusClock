@@ -84,14 +84,6 @@ class SignInActivity : AppCompatActivity() {
             finish()
         }
 
-       // val db = FirebaseFirestore.getInstance()
-        //val usersCollection = db.collection("users")
-        //val currentUser = auth.currentUser
-        //val userRef = db.collection("users").document(currentUser.uid)
-
-
-
-       // userRef.set(newUser).addOnSuccessListener {}
     }
 
     fun signupUser() {
