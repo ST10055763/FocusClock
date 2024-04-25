@@ -31,6 +31,99 @@
         android:layout_height="80dp"
         app:srcCompat="@drawable/curvedorangebar"
         tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="150dp" />
+        tools:layout_editor_absoluteY="132dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*username*"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="313dp"
+        android:layout_height="341dp"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="226dp"
+        tools:srcCompat="@color/backgroundGrey" />
+
+    <EditText
+        android:id="@+id/edtFullname"
+        android:layout_width="262dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="Full name"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="286dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit the following details:"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="260dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="392dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="259dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FEB05C"
+        android:text="Save"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="505dp" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="263dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="337dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="173dp"
+        android:layout_height="54dp"
+        android:backgroundTint="#FF7F7F"
+        android:text="Button"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="585dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="351dp"
+        android:layout_height="63dp"
+        android:src="@color/fcBlue"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="661dp"
+        tools:srcCompat="@color/fcBlue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

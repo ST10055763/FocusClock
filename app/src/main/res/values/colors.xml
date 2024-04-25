@@ -5,4 +5,6 @@
     <color name="fcBlue">#FF6279E2</color>
     <color name="backgroundGrey">#DBDBDB</color>
     <color name="fcOrange">#CBFF9114</color>
+    <color name="fcGrey">#C8C8C8</color>
+
 </resources>
