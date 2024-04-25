@@ -67,8 +67,6 @@ class SignInActivity : AppCompatActivity() {
         // set signUpButton Listener
         signUpBtn.setOnClickListener {
             signupUser()
-            // using finish() to end the activity
-            finish()
         }
 
         // setup return listeners (did because missing)
