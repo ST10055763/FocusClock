@@ -79,7 +79,11 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_SHORT).show()
+
+                var firebaseUUID = auth.currentUser?.uid // Get the user ID
                 val homeScreenIntent = Intent(this, HomePageActivity::class.java)
+                homeScreenIntent.putExtra("firebaseUUID", firebaseUUID)
+
                 startActivity(homeScreenIntent)
                 finish()
                 // add redirect to home screen here
