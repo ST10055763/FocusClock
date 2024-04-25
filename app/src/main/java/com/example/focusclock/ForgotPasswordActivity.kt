@@ -1,17 +1,25 @@
 package com.example.focusclock
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : AppCompatActivity() {
+
     private lateinit var auth: FirebaseAuth
+
+    // missing control elements?
+    private lateinit var ReturnLogin: TextView
+    private lateinit var btnReturn : FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
@@ -25,6 +33,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
         val emailEditText: EditText = findViewById(R.id.editTxtEmail)
         val resetButton: Button = findViewById(R.id.btnResetPassword)
 
+        // initialise control elements
+        ReturnLogin = findViewById(R.id.tvForgotPassRetLog)
+        btnReturn = findViewById(R.id.btnForgotPassBack)
+
         resetButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()
 
@@ -34,6 +46,21 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             resetPassword(email)
+        }
+
+        // setup return listeners (did because missing)
+        ReturnLogin.setOnClickListener{
+            var returnLoginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(returnLoginIntent)
+            // using finish() to end the activity
+            finish()
+        }
+
+        btnReturn.setOnClickListener{
+            var returnLoginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(returnLoginIntent)
+            // using finish() to end the activity
+            finish()
         }
 
 
