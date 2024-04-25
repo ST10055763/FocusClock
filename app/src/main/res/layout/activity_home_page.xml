@@ -7,4 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".HomePageActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="346dp"
+        android:layout_height="50dp"
+        android:text="Hello User"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="346dp"
+        android:layout_height="22dp"
+        android:text="Here's Todays Shedule"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="118dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="357dp"
+        android:layout_height="110dp"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="166dp"
+        tools:srcCompat="@color/fcOrange" />
 </androidx.constraintlayout.widget.ConstraintLayout>
