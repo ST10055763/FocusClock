@@ -17,7 +17,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    // missing control elements?
     private lateinit var ReturnLogin: TextView
     private lateinit var btnReturn : FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +24,12 @@ class ForgotPasswordActivity : AppCompatActivity() {
         //enableEdgeToEdge()
         setContentView(R.layout.activity_forgot_password)
 
-        //need to connect firebase, got scared
-        //got passed authentication...did not finish
         auth = FirebaseAuth.getInstance()
 
-        //ask kiash about form.component reference
         val emailEditText: EditText = findViewById(R.id.editTxtEmail)
         val resetButton: Button = findViewById(R.id.btnResetPassword)
 
-        // initialise control elements
+
         ReturnLogin = findViewById(R.id.tvForgotPassRetLog)
         btnReturn = findViewById(R.id.btnForgotPassBack)
 
@@ -48,7 +44,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
             resetPassword(email)
         }
 
-        // setup return listeners (did because missing)
+
         ReturnLogin.setOnClickListener{
             var returnLoginIntent = Intent(this, LoginActivity::class.java)
             startActivity(returnLoginIntent)
