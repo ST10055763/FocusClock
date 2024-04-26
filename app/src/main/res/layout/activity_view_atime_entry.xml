@@ -8,6 +8,93 @@
     tools:context=".ViewATimeEntryActivity">
 
     <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="351dp"
+        android:layout_height="63dp"
+        android:src="@color/fcBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941"
+        tools:srcCompat="@color/fcBlue" />
+
+    <ImageButton
+        android:id="@+id/navbarPomodoro"
+        android:layout_width="66dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#6279E1"
+        android:contentDescription="pomodorotimer"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938"
+        app:srcCompat="@drawable/timer" />
+
+    <ImageButton
+        android:id="@+id/navbarFilter"
+        android:layout_width="64dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#6279E1"
+        android:contentDescription="filter"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.302"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.942"
+        app:srcCompat="@drawable/filter" />
+
+    <ImageButton
+        android:id="@+id/navbarHome"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:backgroundTint="#6279E1"
+        android:contentDescription="home"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939"
+        app:srcCompat="@drawable/home" />
+
+    <ImageButton
+        android:id="@+id/navbarEntries"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#6279E1"
+        android:contentDescription="entriesList"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.719"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.932"
+        app:srcCompat="@drawable/clipboard" />
+
+    <ImageButton
+        android:id="@+id/navbarSettings"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#6279E1"
+        android:contentDescription="settings"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.932"
+        app:srcCompat="@drawable/settings" />
+
+    <ImageView
         android:id="@+id/imageView3"
         android:layout_width="304dp"
         android:layout_height="456dp"
