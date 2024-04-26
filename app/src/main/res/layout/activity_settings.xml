@@ -11,27 +11,45 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="261dp"
+        android:layout_marginBottom="8dp"
         android:text="Settings"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="47dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="281dp"
+        android:layout_marginBottom="7dp"
         android:text="Edit User Profile"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="100dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="312dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/curvedorangebar"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="132dp" />
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="42dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/curvedorangebar" />
 
     <TextView
         android:id="@+id/textView7"
@@ -39,16 +57,8 @@
         android:layout_height="wrap_content"
         android:text="*username*"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="155dp" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="313dp"
-        android:layout_height="341dp"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="226dp"
-        tools:srcCompat="@color/backgroundGrey" />
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="154dp" />
 
     <EditText
         android:id="@+id/edtFullname"
@@ -57,37 +67,49 @@
         android:ems="10"
         android:hint="Full name"
         android:inputType="text"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="286dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.462" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="203dp"
         android:text="Edit the following details:"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="247dp" />
 
     <EditText
         android:id="@+id/editTextPhone"
-        android:layout_width="260dp"
-        android:layout_height="38dp"
+        android:layout_width="262dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="Phone"
         android:inputType="phone"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="392dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        android:layout_width="259dp"
-        android:layout_height="40dp"
+        android:layout_width="264dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="450dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617" />
 
     <Button
         android:id="@+id/btnSave"
@@ -95,8 +117,11 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FEB05C"
         android:text="Save"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="505dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.704" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -105,8 +130,12 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="337dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
 
     <Button
         android:id="@+id/button3"
@@ -114,16 +143,76 @@
         android:layout_height="54dp"
         android:backgroundTint="#FF7F7F"
         android:text="Button"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="585dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.802" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="351dp"
         android:layout_height="63dp"
         android:src="@color/fcBlue"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="661dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941"
         tools:srcCompat="@color/fcBlue" />
+
+    <ImageButton
+        android:id="@+id/navbarPomodoro"
+        android:layout_width="66dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#6279E1"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938"
+        app:srcCompat="@drawable/timer" />
+
+    <ImageButton
+        android:id="@+id/navbarFilter"
+        android:layout_width="64dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#6279E1"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/filter"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="669dp" />
+
+    <ImageButton
+        android:id="@+id/navbarHome"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:backgroundTint="#6279E1"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/home"
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="664dp" />
+
+    <ImageButton
+        android:id="@+id/navbarEntries"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#6279E1"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/clipboard"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="669dp" />
+
+    <ImageButton
+        android:id="@+id/navbarSettings"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#6279E1"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/settings"
+        tools:layout_editor_absoluteX="322dp"
+        tools:layout_editor_absoluteY="669dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
