@@ -180,14 +180,14 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="43dp"
-        android:layout_height="34dp"
+        android:layout_width="38dp"
+        android:layout_height="31dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toStartOf="@+id/editTextDate"
-        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintHorizontal_bias="0.608"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:layout_constraintVertical_bias="0.36"
+        app:layout_constraintVertical_bias="0.441"
         app:srcCompat="@drawable/calendarlogo" />
 
     <Button
@@ -216,6 +216,6 @@
         app:layout_constraintHorizontal_bias="0.605"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintVertical_bias="0.304" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
