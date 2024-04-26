@@ -68,7 +68,7 @@
         android:background="@color/white"
         android:ems="10"
         android:hint="Due Date"
-        android:inputType="text"
+        android:inputType="datetime|date"
         android:text=""
         tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="307dp" />
@@ -85,13 +85,13 @@
         android:id="@+id/APGoalHrstxt"
         android:layout_width="309dp"
         android:layout_height="46dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text=""
-        android:hint="Goal Hours"
         android:background="@color/white"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="396dp" />
+        android:ems="10"
+        android:hint="Goal Hours"
+        android:inputType="number"
+        android:text=""
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="399dp" />
 
     <Button
         android:id="@+id/APSaveBtn"
