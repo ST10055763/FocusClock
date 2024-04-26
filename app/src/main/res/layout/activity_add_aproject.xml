@@ -42,7 +42,7 @@
         tools:layout_editor_absoluteY="184dp" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/APprojectNametxt"
         android:layout_width="309dp"
         android:layout_height="46dp"
         android:ems="10"
@@ -62,7 +62,7 @@
         tools:layout_editor_absoluteY="277dp" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/APDueDatetxt"
         android:layout_width="309dp"
         android:layout_height="46dp"
         android:background="@color/white"
@@ -82,7 +82,7 @@
         tools:layout_editor_absoluteY="373dp" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/APGoalHrstxt"
         android:layout_width="309dp"
         android:layout_height="46dp"
         android:ems="10"
@@ -94,7 +94,7 @@
         tools:layout_editor_absoluteY="396dp" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/APSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SAVE"
@@ -103,7 +103,7 @@
         tools:layout_editor_absoluteY="453dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/APfloatingBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
