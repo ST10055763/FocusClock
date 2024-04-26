@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewProjectsActivity">
+
+    <TextView
+        android:id="@+id/tvHomePageUHeader"
+        android:layout_width="346dp"
+        android:layout_height="50dp"
+        android:text="My Projects"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <TextView
+        android:id="@+id/tvHomePageDateHeader"
+        android:layout_width="346dp"
+        android:layout_height="22dp"
+        android:text="View Your Projects  / Add a New Project"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="118dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="347dp"
+        android:layout_height="82dp"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="161dp"
+        tools:srcCompat="@color/backgroundGrey" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Non-Categorised"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="165dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="347dp"
+        android:layout_height="2dp"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="192dp"
+        tools:srcCompat="@color/black" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Tasks"
+        tools:layout_editor_absoluteX="299dp"
+        tools:layout_editor_absoluteY="203dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="72dp"
+        android:layout_height="17dp"
+        android:text="Insert"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="299dp"
+        tools:layout_editor_absoluteY="222dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="346dp"
+        android:layout_height="247dp"
+        android:scrollbars="vertical"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="262dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="add task"
+        app:backgroundTint="@color/fcOrange"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:layout_editor_absoluteX="325dp"
+        tools:layout_editor_absoluteY="538dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
