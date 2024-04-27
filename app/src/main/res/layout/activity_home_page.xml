@@ -152,7 +152,7 @@
         app:layout_constraintVertical_bias="0.764" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvHomeHoursDone"
         android:layout_width="154dp"
         android:layout_height="21dp"
         android:text="x / y Hours Done"
@@ -165,7 +165,7 @@
         app:layout_constraintVertical_bias="0.146" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnHomeMinGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/backgroundGrey"
@@ -179,7 +179,7 @@
         app:layout_constraintVertical_bias="0.951" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnHomeMaxGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/backgroundGrey"
@@ -193,7 +193,7 @@
         app:layout_constraintVertical_bias="0.935" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tvHomeTasksComplete"
         android:layout_width="181dp"
         android:layout_height="25dp"
         android:text="x Tasks Completed"
@@ -213,7 +213,7 @@
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="1dp"
         android:background="@color/fcBlue"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
+        app:layout_constraintBottom_toTopOf="@+id/recviewHomeTimeLogs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -221,7 +221,7 @@
         tools:srcCompat="@color/fcBlue" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/recviewHomeTimeLogs"
         android:layout_width="355dp"
         android:layout_height="107dp"
         android:layout_marginStart="34dp"
@@ -229,14 +229,14 @@
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="37dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toTopOf="@+id/floatABHomeAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatABHomeAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="325dp"
@@ -248,11 +248,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/recviewHomeTimeLogs"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/edtHomeToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/backgroundGrey"
@@ -266,11 +266,11 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/ivHomeCalIcon"
         android:layout_width="38dp"
         android:layout_height="31dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/editTextDate"
+        app:layout_constraintEnd_toStartOf="@+id/edtHomeEnterDate"
         app:layout_constraintHorizontal_bias="0.608"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
@@ -278,7 +278,7 @@
         app:srcCompat="@drawable/calendarlogo" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/edtHomeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/backgroundGrey"
@@ -292,12 +292,12 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/edtHomeEnterDate"
         android:layout_width="246dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:hint="Enter Date"
-        android:inputType="datetime|date"
+        android:hint="Enter Date (e.g: MM/dd/yyyy)"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.605"
