@@ -1,6 +1,8 @@
 package com.example.focusclock
 
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +21,7 @@ class HomePageActivity : AppCompatActivity() {
 
     private lateinit var tvDateHeader : TextView
     private lateinit var tvUserHeader: TextView
+    private lateinit var edtHomeEnterDate: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -68,11 +71,31 @@ class HomePageActivity : AppCompatActivity() {
                 }
         }
 
+        edtHomeEnterDate = findViewById(R.id.edtHomeEnterDate)
+
+        edtHomeEnterDate.setOnClickListener{
+            showDatePickerDialog()
+        }
+
     }
 
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return dateFormat.format(calendar.time)
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(this, {_, selectedYear, selectedMonth, selectedDay ->
+            val selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", selectedMonth + 1, selectedDay, selectedYear)
+            edtHomeEnterDate.setText(selectedDate)
+        }, year, month, day)
+
+        datePickerDialog.show()
     }
 }
