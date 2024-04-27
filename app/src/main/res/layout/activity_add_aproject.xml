@@ -68,8 +68,8 @@
         android:layout_height="46dp"
         android:background="@color/white"
         android:ems="10"
-        android:hint="Due Date"
-        android:inputType="datetime|date"
+        android:hint="Due Date (e.g. dd/MM/yyyy)"
+        android:inputType="text"
         android:text=""
         tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="307dp" />
