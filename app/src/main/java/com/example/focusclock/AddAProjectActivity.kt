@@ -69,7 +69,7 @@ class AddAProjectActivity : AppCompatActivity() {
         val newProject = Project(
             pname = pname,
             ddate = ddate,
-            ghrs = ghrs
+            ghrs = ghrs,
         )
 
         projectDB.collection("projects")

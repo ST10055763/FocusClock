@@ -7,6 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class AddATaskActivity : AppCompatActivity() {
+    lateinit var taskname : String
+    lateinit var taskDescription : String
+   // lateinit var
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
