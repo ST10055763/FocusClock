@@ -8,28 +8,25 @@
     tools:context=".PomodoroActivity">
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pomodoro Timer"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.068" />
-
-    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit User Profile"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.126" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="333dp"
+        android:layout_height="44dp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="131dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="333dp"
+        android:layout_height="44dp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="196dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
