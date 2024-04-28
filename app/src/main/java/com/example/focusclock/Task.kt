@@ -4,5 +4,5 @@ data class Task (
     val firebaseUUID: String,
     val tname: String,
     val tdescription: String,
-    val project : Project // references the Project.kt
+    val selectedproject : Project // references the Project.kt
 )
