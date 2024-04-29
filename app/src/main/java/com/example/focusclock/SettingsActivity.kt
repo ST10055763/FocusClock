@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.toObject
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -24,6 +26,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var newMax : EditText
     private lateinit var btnUpdate : Button
     private lateinit var HomeButton : ImageButton //- R
+    private lateinit var Username : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,28 +41,62 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(KtoEIntent)
         }
 
-        //setting the object for firebase and retrieving the current user's id
-        val auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid
-
-        //initialising
+        //initialising in button so new values are updated
         newEmail = findViewById(R.id.edtEmail)
         newFullname = findViewById(R.id.edtFullname)
         newPhone = findViewById(R.id.edtNumber)
         newMin = findViewById(R.id.edtMin)
         newMax = findViewById(R.id.edtMax)
+        Username = findViewById(R.id.txtViewUsername)
+
+        //setting the object for firebase and retrieving the current user's id
+        val auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid
+        val db = FirebaseFirestore.getInstance()
+
+        populateUserData(uid, db)
+
+        btnUpdate = findViewById(R.id.btnSave)
 
         btnUpdate.setOnClickListener {
+
+            //calling update method
             updateUser(uid)
         }
 
+    }
+
+    private fun populateUserData(uid: String?, db: FirebaseFirestore) {
+
+        if (uid != null) {
+            val userRef = db.collection("profiles").document(uid)
+            userRef.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        // Retrieve user data
+                        val userData = documentSnapshot.toObject(Users::class.java)
+                        // Populate data into EditText components
+                        newEmail.setText(userData?.email)
+                        newFullname.setText(userData?.fname)
+                        newPhone.setText(userData?.phoneNum)
+                        newMin.setText(userData?.mingoals)
+                        newMax.setText(userData?.maxgoals)
+                        Username.setText(userData?.fname)
+                    } else {
+                        Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
     private fun updateUser(uid: String?) {
         val db = FirebaseFirestore.getInstance()
 
         uid?.let { uid ->
-            val userRef = db.collection("users").document(uid)
+            val userRef = db.collection("profiles").document(uid)
 
             // Retrieve text from EditText fields
             val email = newEmail.text.toString()
