@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.UserProfileChangeRequest
 
 class SettingsActivity : AppCompatActivity() {
@@ -29,6 +30,7 @@ class SettingsActivity : AppCompatActivity() {
         //setting the object for firebase and retrieving the current user's id
         val auth = FirebaseAuth.getInstance()
         val uid = auth.currentUser?.uid
+        val db = FirebaseFirestore.getInstance()
 
         //initialising
         newEmail = findViewById(R.id.edtEmail)
@@ -37,41 +39,28 @@ class SettingsActivity : AppCompatActivity() {
         newMin = findViewById(R.id.edtMin)
         newMax = findViewById(R.id.edtMax)
 
+
         uid?.let { uid ->
-            // Extracting text from EditText objects
-            val email = newEmail.text.toString()
-            val fullname = newFullname.text.toString()
-            val phone = newPhone.text.toString()
-            val minGoals = newMin.text.toString()
-            val maxGoals = newMax.text.toString()
+            val userRef = db.collection("users").document(uid)
 
-            // Update user details with extracted values
-            val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(fullname)
-                .setPhoneNumber(phone)
-                .build()
+            val updates = hashMapOf<String, Any>(
+                "email" to newEmail,
+                "fname" to newFullname,
+                "maxgoals" to newMax,
+                "mingoals" to newMin,
+                "phoneNum" to newPhone
+            )
 
-            auth.currentUser?.updateProfile(profileUpdates)
-                ?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Update successful
-                        // You can also update email separately if needed
-                        auth.currentUser?.updateEmail(email)
-                            ?.addOnCompleteListener { emailTask ->
-                                if (emailTask.isSuccessful) {
-                                    // Email update successful
-                                    Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show()
-                                } else {
-                                    // Email update failed
-                                    Toast.makeText(this, "Failed to update email", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                    } else {
-                        // Update failed
-                        Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show()
-                    }
+            userRef.update(updates)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "User details updated successfully!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Failed to update user details: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
+
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
