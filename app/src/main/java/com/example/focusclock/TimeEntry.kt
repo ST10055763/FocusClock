@@ -3,8 +3,9 @@ package com.example.focusclock
 import android.widget.Button
 
 data class TimeEntry (
-    val startTime : Int,
-    val endTime : Int,
+    val firebaseUUID: String,
+    val startTime : String,
+    val endTime : String,
     val selectedTask: Task,
     val entryProject : Project,
     val timeEntryPic:Button

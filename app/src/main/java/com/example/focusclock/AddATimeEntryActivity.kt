@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -21,8 +22,11 @@ class AddATimeEntryActivity : AppCompatActivity() {
 lateinit var backBtn:Button
 lateinit var addTaskBtn: Button
 lateinit var logBtn: Button
+lateinit var timeEntryPic : Button
 lateinit var timeEntryProject : Spinner
 lateinit var timeEntryTask:Spinner
+lateinit var timeEntryStartTime : EditText
+lateinit var timeEntryEndTime : EditText
 lateinit var t: List<Task>
 lateinit var proj: List<Project>
 
@@ -43,6 +47,9 @@ lateinit var proj: List<Project>
         logBtn = findViewById(R.id.AELoginBtn)
         timeEntryProject = findViewById(R.id.spinnerTimeEntProj)
         timeEntryTask = findViewById(R.id.spinnerTimeEntTask)
+        timeEntryStartTime = findViewById(R.id.AEStartTimetxt)
+        timeEntryEndTime = findViewById(R.id.AEendTimetxt)
+        timeEntryPic = findViewById(R.id.AEAddPictureBtn)
 
         fetchFireStoreProjects()
         fetchFireStoreTasks()
@@ -53,7 +60,7 @@ lateinit var proj: List<Project>
             val userId = user?.uid
             if (userId != null) {
 
-                //createTimeEntry(userId)
+                createTimeEntry(userId)
                 val intent = Intent(this, ViewATimeEntryActivity::class.java)
                 startActivity(intent)
             }
@@ -122,6 +129,34 @@ lateinit var proj: List<Project>
                 t=taskList
                 populatetaskSpinner()
             }
+    }
+    fun createTimeEntry(userId : String)
+    {
+        val startTime = timeEntryStartTime.text.toString()
+        val endTime = timeEntryEndTime.text.toString()
+
+        if(startTime.isEmpty() || endTime.isEmpty())
+        {
+            Toast.makeText(this, "Please Fill In All Necessary Time Entry Details", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val entryProject = proj[timeEntryProject.selectedItemPosition]
+        val selectedTask = t[timeEntryTask.selectedItemPosition]
+        val timeEntry = TimeEntry(
+            firebaseUUID = userId,
+            startTime = startTime,
+            endTime = endTime,
+            selectedTask = selectedTask,
+            entryProject = entryProject,
+            timeEntryPic = AEAddPictureBtn
+        )
+        TimeEntrydb.collection("timeentry")
+            .add(timeEntry)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(this, "Time Entry Added Successfully", Toast.LENGTH_SHORT).show()
+
+            }
+
     }
 
 
