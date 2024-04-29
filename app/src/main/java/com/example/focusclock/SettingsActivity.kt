@@ -1,5 +1,6 @@
 package com.example.focusclock
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -21,11 +22,20 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var newMin : EditText
     private lateinit var newMax : EditText
     private lateinit var btnUpdate : Button
+    private lateinit var HomeButton : Button //- R
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_settings)
+
+        //settings navigation code - R
+        HomeButton = findViewById(R.id.navbarHome)
+
+        HomeButton.setOnClickListener{
+            var KtoEIntent = Intent(this, HomePageActivity::class.java)
+            startActivity(KtoEIntent)
+        }
 
         //setting the object for firebase and retrieving the current user's id
         val auth = FirebaseAuth.getInstance()
@@ -54,6 +64,7 @@ class SettingsActivity : AppCompatActivity() {
             userRef.update(updates)
                 .addOnSuccessListener {
                     Toast.makeText(this, "User details updated successfully!", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to update user details: ${e.message}", Toast.LENGTH_SHORT).show()

@@ -1,7 +1,9 @@
 package com.example.focusclock
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +21,7 @@ class HomePageActivity : AppCompatActivity() {
     // Define your Firestore instance
     private val db = FirebaseFirestore.getInstance()
 
+    private lateinit var settingsButton : Button //- R
     private lateinit var tvDateHeader : TextView
     private lateinit var tvUserHeader: TextView
     private lateinit var edtHomeEnterDate: EditText
@@ -30,6 +33,14 @@ class HomePageActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        //settings navigation code - R
+        settingsButton = findViewById(R.id.navbarSettings)
+
+        settingsButton.setOnClickListener{
+            var KtoEIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(KtoEIntent)
         }
 
         // Retrieve firebaseUUID from Intent extras
