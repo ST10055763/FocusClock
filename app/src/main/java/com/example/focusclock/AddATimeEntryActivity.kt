@@ -52,7 +52,7 @@ lateinit var proj: List<Project>
             val userId = user?.uid
             if (userId != null) {
 
-                createTimeEntry(userId)
+                //createTimeEntry(userId)
                 val intent = Intent(this, ViewATimeEntryActivity::class.java)
                 startActivity(intent)
             }

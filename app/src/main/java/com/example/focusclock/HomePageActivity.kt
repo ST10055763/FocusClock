@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -21,7 +22,7 @@ class HomePageActivity : AppCompatActivity() {
     // Define your Firestore instance
     private val db = FirebaseFirestore.getInstance()
 
-    private lateinit var settingsButton : Button //- R
+    private lateinit var settingsButton : ImageButton //- R
     private lateinit var tvDateHeader : TextView
     private lateinit var tvUserHeader: TextView
     private lateinit var edtHomeEnterDate: EditText
