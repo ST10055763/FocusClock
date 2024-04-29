@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -22,7 +23,7 @@ lateinit var addTaskBtn: Button
 lateinit var logBtn: Button
 lateinit var timeEntryProject : Spinner
 lateinit var timeEntryTask:Spinner
-lateinit var tasks: List<Task>
+lateinit var t: List<Task>
 lateinit var proj: List<Project>
 
     private val TimeEntrydb = FirebaseFirestore.getInstance()
@@ -47,7 +48,7 @@ lateinit var proj: List<Project>
         fetchFireStoreTasks()
 
         addTaskBtn.setOnClickListener {
-            // val userId = FirebaseAuth.getInstance().currentUser?.uid
+             //val userId = FirebaseAuth.getInstance().currentUser?.uid
             val user = Firebase.auth.currentUser
             val userId = user?.uid
             if (userId != null) {
@@ -73,6 +74,14 @@ lateinit var proj: List<Project>
         timeEntryProject.adapter = adapter
 
     }
+    fun populatetaskSpinner()
+    {
+        val taskname = t.map { it.tname }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, taskname)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        timeEntryTask.adapter = adapter
+
+    }
     fun fetchFireStoreProjects()
     {
         db=FirebaseFirestore.getInstance()
@@ -90,7 +99,7 @@ lateinit var proj: List<Project>
                 }
                 proj = projectList
                 populateprojectSpinner()
-                addTaskBtn.isEnabled = true
+                //addTaskBtn.isEnabled = true
             }
     }
     fun fetchFireStoreTasks()
@@ -104,7 +113,14 @@ lateinit var proj: List<Project>
                     val firebaseUUID = document.getString("firebaseUUID")
                     val tname = document.getString("tname")
                     val tdescription = document.getString("tdescription")
+                    val projectID = document.getString("selectedproject")
+                    //val project = fetchFireStoreProjects(projectID)
+                    val project = proj.find { it.firebaseUUID == projectID }
+                    val task = Task(firebaseUUID, tname, tdescription, project)
+                    taskList.add(task)
                 }
+                t=taskList
+                populatetaskSpinner()
             }
     }
 
