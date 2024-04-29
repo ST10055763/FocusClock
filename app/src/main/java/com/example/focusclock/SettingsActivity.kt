@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var newMin : EditText
     private lateinit var newMax : EditText
     private lateinit var btnUpdate : Button
-    private lateinit var HomeButton : Button //- R
+    private lateinit var HomeButton : ImageButton //- R
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,6 @@ class SettingsActivity : AppCompatActivity() {
         //setting the object for firebase and retrieving the current user's id
         val auth = FirebaseAuth.getInstance()
         val uid = auth.currentUser?.uid
-        val db = FirebaseFirestore.getInstance()
 
         //initialising
         newEmail = findViewById(R.id.edtEmail)
@@ -49,35 +49,41 @@ class SettingsActivity : AppCompatActivity() {
         newMin = findViewById(R.id.edtMin)
         newMax = findViewById(R.id.edtMax)
 
+        btnUpdate.setOnClickListener {
+            updateUser(uid)
+        }
+
+    }
+
+    private fun updateUser(uid: String?) {
+        val db = FirebaseFirestore.getInstance()
 
         uid?.let { uid ->
             val userRef = db.collection("users").document(uid)
 
+            // Retrieve text from EditText fields
+            val email = newEmail.text.toString()
+            val fullname = newFullname.text.toString()
+            val phone = newPhone.text.toString()
+            val minGoals = newMin.text.toString()
+            val maxGoals = newMax.text.toString()
+
             val updates = hashMapOf<String, Any>(
-                "email" to newEmail,
-                "fname" to newFullname,
-                "maxgoals" to newMax,
-                "mingoals" to newMin,
-                "phoneNum" to newPhone
+                "email" to email,
+                "fname" to fullname,
+                "maxgoals" to maxGoals,
+                "mingoals" to minGoals,
+                "phoneNum" to phone
             )
 
             userRef.update(updates)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "User details updated successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SettingsActivity, "User details updated successfully!", Toast.LENGTH_SHORT).show()
                     finish()
                 }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Failed to update user details: ${e.message}", Toast.LENGTH_SHORT).show()
+                .addOnFailureListener {
+                    Toast.makeText(this@SettingsActivity, "Failed to update user details: ", Toast.LENGTH_SHORT).show()
                 }
-        }
-
-
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
         }
     }
 }
