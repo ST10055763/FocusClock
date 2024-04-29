@@ -8,5 +8,5 @@ data class TimeEntry (
     val endTime : String,
     val selectedTask: Task,
     val entryProject : Project,
-    val timeEntryPic:Button
+    val timeEntryPicRef:String,
 )
