@@ -12,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -23,6 +24,13 @@ class HomePageActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
     private lateinit var settingsButton : ImageButton //- R
+    private lateinit var timerButton: ImageButton
+    private lateinit var filterButton: ImageButton
+    private lateinit var homeButton: ImageButton
+    private lateinit var projectButton: ImageButton
+    private lateinit var addTimeEntryButton: FloatingActionButton
+
+
     private lateinit var tvDateHeader : TextView
     private lateinit var tvUserHeader: TextView
     private lateinit var edtHomeEnterDate: EditText
@@ -38,10 +46,39 @@ class HomePageActivity : AppCompatActivity() {
 
         //settings navigation code - R
         settingsButton = findViewById(R.id.navbarSettings)
-
         settingsButton.setOnClickListener{
             var KtoEIntent = Intent(this, SettingsActivity::class.java)
             startActivity(KtoEIntent)
+        }
+
+        timerButton = findViewById(R.id.navbarPomodoro)
+        timerButton.setOnClickListener{
+            var timerIntent = Intent(this, PomodoroActivity::class.java)
+            startActivity(timerIntent)
+        }
+
+        filterButton = findViewById(R.id.navbarFilter)
+        filterButton.setOnClickListener{
+            var filterIntent = Intent(this, FilterInformationActivty::class.java)
+            startActivity(filterIntent)
+        }
+
+        homeButton = findViewById(R.id.navbarHome)
+        homeButton.setOnClickListener{
+            var homeIntent = Intent(this, HomePageActivity::class.java)
+            startActivity(homeIntent)
+        }
+
+        projectButton = findViewById(R.id.navbarEntries)
+        projectButton.setOnClickListener{
+            var homeIntent = Intent(this, ViewProjectsActivity::class.java)
+            startActivity(homeIntent)
+        }
+
+        addTimeEntryButton = findViewById(R.id.floatABHomeAdd)
+        addTimeEntryButton.setOnClickListener{
+            var addTimeIntent = Intent(this, AddATimeEntryActivity::class.java)
+            startActivity(addTimeIntent)
         }
 
         // Retrieve firebaseUUID from Intent extras

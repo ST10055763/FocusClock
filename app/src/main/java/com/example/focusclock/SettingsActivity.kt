@@ -25,6 +25,11 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var Username : TextView
     private lateinit var LLogout : Button
 
+    private lateinit var settingsButton : ImageButton //- R
+    private lateinit var timerButton: ImageButton
+    private lateinit var filterButton: ImageButton
+    private lateinit var projectButton: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,6 +41,30 @@ class SettingsActivity : AppCompatActivity() {
         HomeButton.setOnClickListener{
             var KtoEIntent = Intent(this, HomePageActivity::class.java)
             startActivity(KtoEIntent)
+        }
+
+        settingsButton = findViewById(R.id.navbarSettings)
+        settingsButton.setOnClickListener{
+            var KtoEIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(KtoEIntent)
+        }
+
+        timerButton = findViewById(R.id.navbarPomodoro)
+        timerButton.setOnClickListener{
+            var timerIntent = Intent(this, PomodoroActivity::class.java)
+            startActivity(timerIntent)
+        }
+
+        filterButton = findViewById(R.id.navbarFilter)
+        filterButton.setOnClickListener{
+            var filterIntent = Intent(this, FilterInformationActivty::class.java)
+            startActivity(filterIntent)
+        }
+
+        projectButton = findViewById(R.id.navbarEntries)
+        projectButton.setOnClickListener{
+            var homeIntent = Intent(this, ViewProjectsActivity::class.java)
+            startActivity(homeIntent)
         }
 
         //initialising in button so new values are updated
