@@ -135,8 +135,8 @@
         android:hint="Project name"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3" />
+        app:layout_constraintBottom_toTopOf="@+id/tvVPNonCatInsertTot"
+        app:layout_constraintStart_toStartOf="@+id/tvVPNonCatInsertTot" />
 
     <TextView
         android:id="@+id/textView9"
@@ -214,7 +214,7 @@
         app:layout_constraintEnd_toStartOf="@+id/ViewEntryimageButton" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvVPNonCatInsertTot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="207dp"
