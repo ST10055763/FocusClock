@@ -128,6 +128,7 @@
         app:layout_constraintStart_toStartOf="@+id/ivVPNonCatBack"
         app:layout_constraintTop_toTopOf="@+id/ivVPNonCatBack"
         app:layout_constraintVertical_bias="0.375"
+        android:background="@color/black"
         tools:srcCompat="@color/black" />
 
     <TextView
