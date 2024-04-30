@@ -17,7 +17,6 @@ class PomodoroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_pomodoro)
 
         progressBar = findViewById(R.id.progressBar)
@@ -28,8 +27,6 @@ class PomodoroActivity : AppCompatActivity() {
                 val secondsRemaining = millisUntilFinished / 1000
                 updateTimerText(secondsRemaining)
                 updateProgressBar(secondsRemaining)
-                //val progress = millisUntilFinished.toInt()
-                //progressBar.progress = progress
             }
 
             override fun onFinish() {
