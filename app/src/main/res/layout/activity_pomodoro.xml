@@ -106,26 +106,41 @@
     <Spinner
         android:id="@+id/spinProjects"
         android:layout_width="333dp"
-        android:layout_height="44dp"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="133dp" />
+        android:layout_height="48dp"
+        android:contentDescription="loads projects"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.215" />
+
+    <Spinner
+        android:id="@+id/spinTasks"
+        android:layout_width="272dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.316"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.336" />
 
     <ImageButton
         android:id="@+id/btnTasksRedirect"
         android:layout_width="50dp"
         android:layout_height="47dp"
         android:backgroundTint="#CBFF9114"
+        android:contentDescription="adds a new task"
         android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.333"
         app:srcCompat="@drawable/add"
-        tools:layout_editor_absoluteX="326dp"
-        tools:layout_editor_absoluteY="196dp" />
-
-    <Spinner
-        android:id="@+id/spinTasks"
-        android:layout_width="272dp"
-        android:layout_height="44dp"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="197dp" />
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView7"
@@ -134,8 +149,12 @@
         android:text="Pomodoro Timer"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="37dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
 
     <TextView
         android:id="@+id/textView11"
@@ -143,8 +162,12 @@
         android:layout_height="wrap_content"
         android:text="(25/5) Minute Focus - Set Up"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="87dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122" />
 
     <Button
         android:id="@+id/btnStartSession"
@@ -152,8 +175,11 @@
         android:layout_height="52dp"
         android:backgroundTint="#CBFF9114"
         android:text="Start Session"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="564dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.851" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -163,8 +189,39 @@
         android:max="1500"
         android:progress="1500"
         android:progressDrawable="@drawable/custom_progress_bar"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="338dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
+
+    <ProgressBar
+        android:id="@+id/progressBar5Min"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="336dp"
+        android:layout_height="56dp"
+        android:max="1500"
+        android:progress="1500"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.754" />
+
+    <TextView
+        android:id="@+id/txt5Min"
+        android:layout_width="193dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:textSize="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.659" />
 
     <TextView
         android:id="@+id/tvTimer"
@@ -172,7 +229,34 @@
         android:layout_height="50dp"
         android:gravity="center_horizontal"
         android:textSize="48dp"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="269dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose a taks (optionally click + to add a task):"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.282" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose a project:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.171" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
