@@ -7,82 +7,115 @@
     android:layout_height="match_parent"
     tools:context=".ViewProjectsActivity">
 
+    <ImageView
+        android:id="@+id/ivVPNonCatBack"
+        android:layout_width="347dp"
+        android:layout_height="82dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261"
+        tools:srcCompat="@color/backgroundGrey" />
+
     <TextView
-        android:id="@+id/tvHomePageUHeader"
+        android:id="@+id/tvVPNonCatHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Non-Categorised"
+        app:layout_constraintBottom_toBottomOf="@+id/ivNonCatSep"
+        app:layout_constraintEnd_toEndOf="@+id/ivVPNonCatBack"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ivVPNonCatBack"
+        app:layout_constraintTop_toTopOf="@+id/ivVPNonCatBack" />
+
+    <ImageView
+        android:id="@+id/ivNonCatSep"
+        android:layout_width="347dp"
+        android:layout_height="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivVPNonCatBack"
+        app:layout_constraintEnd_toEndOf="@+id/ivVPNonCatBack"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ivVPNonCatBack"
+        app:layout_constraintTop_toTopOf="@+id/ivVPNonCatBack"
+        app:layout_constraintVertical_bias="0.375"
+        tools:srcCompat="@color/black" />
+
+    <TextView
+        android:id="@+id/tvVPNonCatTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Tasks"
+        app:layout_constraintBottom_toBottomOf="@+id/ivVPNonCatBack"
+        app:layout_constraintEnd_toEndOf="@+id/ivVPNonCatBack"
+        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintStart_toStartOf="@+id/ivVPNonCatBack"
+        app:layout_constraintTop_toTopOf="@+id/ivVPNonCatBack"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <TextView
+        android:id="@+id/tvVPNonCatInsertTot"
+        android:layout_width="72dp"
+        android:layout_height="17dp"
+        android:text="Insert"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/ivVPNonCatBack"
+        app:layout_constraintEnd_toEndOf="@+id/ivVPNonCatBack"
+        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintStart_toStartOf="@+id/ivVPNonCatBack"
+        app:layout_constraintTop_toTopOf="@+id/ivVPNonCatBack"
+        app:layout_constraintVertical_bias="0.923" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewVP"
+        android:layout_width="346dp"
+        android:layout_height="247dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivVPNonCatBack"
+        app:layout_constraintVertical_bias="0.103" />
+
+    <TextView
+        android:id="@+id/tvVPHeader"
         android:layout_width="346dp"
         android:layout_height="50dp"
         android:text="My Projects"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="68dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ivVPNonCatBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvHomePageDateHeader"
-        android:layout_width="346dp"
-        android:layout_height="22dp"
-        android:text="View Your Projects  / Add a New Project"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="118dp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="347dp"
-        android:layout_height="82dp"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="161dp"
-        tools:srcCompat="@color/backgroundGrey" />
-
-    <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvVPSubHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Non-Categorised"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="165dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="347dp"
-        android:layout_height="2dp"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="192dp"
-        tools:srcCompat="@color/black" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Tasks"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="203dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="72dp"
-        android:layout_height="17dp"
-        android:text="Insert"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="222dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="346dp"
-        android:layout_height="247dp"
-        android:scrollbars="vertical"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="262dp" />
+        android:text="View Your Projects / Add a New Project"
+        app:layout_constraintBottom_toTopOf="@+id/ivVPNonCatBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvVPHeader"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatABHomeAdd"
+        android:id="@+id/floatActButVPAddProj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:contentDescription="add task"
+        android:contentDescription="add project"
         app:backgroundTint="@color/fcOrange"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        tools:layout_editor_absoluteX="325dp"
-        tools:layout_editor_absoluteY="538dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recViewVP"
+        app:layout_constraintVertical_bias="0.223"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
