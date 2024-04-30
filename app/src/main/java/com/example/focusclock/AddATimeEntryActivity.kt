@@ -1,6 +1,7 @@
 package com.example.focusclock
 
 import android.app.Activity
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -27,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
 import java.io.IOException
+import java.util.Calendar
+import java.util.Locale
 import java.util.UUID
 
 class AddATimeEntryActivity : AppCompatActivity() {
@@ -76,6 +79,14 @@ lateinit var proj: List<Project>
 
         fetchFireStoreProjects()
         fetchFireStoreTasks()
+
+        timeEntryStartTime.setOnClickListener{
+            showTimePickerDialog(isStartTime = true)
+        }
+
+        timeEntryEndTime.setOnClickListener{
+            showTimePickerDialog(isStartTime = true)
+        }
 
         logBtn.setOnClickListener {
              //val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -253,8 +264,6 @@ lateinit var proj: List<Project>
         }
     }
 
-
-
     fun createTimeEntry(userId : String)
     {
         val startTime = timeEntryStartTime.text.toString()
@@ -295,6 +304,24 @@ lateinit var proj: List<Project>
 
             }
 
+    }
+
+    private fun showTimePickerDialog(isStartTime : Boolean) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
+            // Format the time chosen by the user (HH:mm).
+            val selectedTime = String.format(Locale.getDefault(), "%02d:%02d", selectedHour,selectedMinute)
+            if (isStartTime) {
+                timeEntryStartTime.setText(selectedTime)
+            } else {
+                timeEntryEndTime.setText(selectedTime)
+            }
+        }, hour, minute, true)
+
+        timePickerDialog.show()
     }
 
 
