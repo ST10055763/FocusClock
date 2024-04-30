@@ -169,7 +169,7 @@
         android:layout_marginBottom="170dp"
         android:background="@color/white"
         android:ems="10"
-        android:hint="Due Date (e.g. dd/MM/yyyy)"
+        android:hint="Due Date (e.g. MM/dd/yyyy)"
         android:inputType="text"
         android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
