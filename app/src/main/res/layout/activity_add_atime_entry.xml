@@ -11,143 +11,166 @@
         android:id="@+id/tvVPNonCatHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:text="Add A Time Entry"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="31dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvVPNonCatTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:text="Populate Your Time Tracking Details"
         android:textColor="#444749"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="83dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="384dp"
-        android:layout_height="482dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="112dp"
+        android:layout_height="467dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
         tools:srcCompat="@color/backgroundGrey" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Add Picture (Optional)"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="409dp" />
+        app:layout_constraintStart_toStartOf="@+id/AEendTimetxt"
+        app:layout_constraintTop_toBottomOf="@+id/AEendTimetxt" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="Start Time: "
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="272dp" />
+        app:layout_constraintBottom_toTopOf="@+id/AEStartTimetxt"
+        app:layout_constraintStart_toStartOf="@+id/AEStartTimetxt" />
 
     <ImageButton
         android:id="@+id/AEAddPictureBtn"
-        android:layout_width="79dp"
-        android:layout_height="65dp"
-        app:srcCompat="@android:drawable/ic_menu_gallery"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="442dp" />
+        android:layout_width="80dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="add image"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="End Time"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="339dp" />
+        app:layout_constraintStart_toStartOf="@+id/AEendTimetxt"
+        app:layout_constraintTop_toBottomOf="@+id/AEStartTimetxt" />
 
     <EditText
         android:id="@+id/AEendTimetxt"
         android:layout_width="282dp"
-        android:layout_height="37dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="End Time"
         android:inputType="text"
         android:text=""
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="358dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Task: "
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="195dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerTimeEntTask"
+        app:layout_constraintStart_toStartOf="@+id/spinnerTimeEntTask" />
 
     <EditText
         android:id="@+id/AEStartTimetxt"
         android:layout_width="282dp"
-        android:layout_height="37dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="-215dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Start Time"
         android:inputType="text"
         android:text=""
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="291dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:layout_constraintTop_toTopOf="@+id/AELoginBtn" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Project: "
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="121dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerTimeEntProj"
+        app:layout_constraintStart_toStartOf="@+id/spinnerTimeEntProj" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/AEfloatingReturnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/fcOrange"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="602dp" />
+        android:contentDescription="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingAddTaskButton"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
         android:backgroundTint="@color/fcOrange"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        tools:layout_editor_absoluteX="325dp"
-        tools:layout_editor_absoluteY="214dp" />
+        android:contentDescription="add"
+        app:layout_constraintStart_toEndOf="@+id/spinnerTimeEntTask"
+        app:layout_constraintTop_toTopOf="@+id/spinnerTimeEntTask"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
     <Button
         android:id="@+id/AELoginBtn"
         android:layout_width="104dp"
         android:layout_height="51dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/fcOrange"
         android:text="LOG"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="530dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintStart_toStartOf="@+id/AEAddPictureBtn" />
 
     <Spinner
         android:id="@+id/spinnerTimeEntProj"
         android:layout_width="280dp"
         android:layout_height="48dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="140dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintStart_toStartOf="@+id/textView13" />
 
     <Spinner
         android:id="@+id/spinnerTimeEntTask"
         android:layout_width="280dp"
         android:layout_height="48dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="214dp" />
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/AEStartTimetxt"
+        app:layout_constraintStart_toStartOf="@+id/imageView9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
