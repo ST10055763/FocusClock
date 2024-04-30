@@ -77,17 +77,23 @@ lateinit var proj: List<Project>
         fetchFireStoreProjects()
         fetchFireStoreTasks()
 
-        addTaskBtn.setOnClickListener {
+        logBtn.setOnClickListener {
              //val userId = FirebaseAuth.getInstance().currentUser?.uid
             val user = Firebase.auth.currentUser
             val userId = user?.uid
             if (userId != null) {
 
                 createTimeEntry(userId)
-                val intent = Intent(this, ViewATimeEntryActivity::class.java)
-                startActivity(intent)
             }
+
         }
+        addTaskBtn.setOnClickListener{
+            var returnLoginIntent = Intent(this, AddATaskActivity::class.java)
+            startActivity(returnLoginIntent)
+            // using finish() to end the activity
+            finish()
+        }
+
         backBtn.setOnClickListener{
             var returnLoginIntent = Intent(this, HomePageActivity::class.java)
             startActivity(returnLoginIntent)
