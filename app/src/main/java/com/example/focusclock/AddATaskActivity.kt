@@ -58,7 +58,7 @@ class AddATaskActivity : AppCompatActivity() {
             }
         }
         backFromAddTask.setOnClickListener{
-            var returnLoginIntent = Intent(this, ViewProjectsActivity::class.java)
+            var returnLoginIntent = Intent(this, HomePageActivity::class.java)
             startActivity(returnLoginIntent)
             // using finish() to end the activity
             finish()
