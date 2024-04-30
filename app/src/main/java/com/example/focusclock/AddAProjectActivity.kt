@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 import java.util.Locale
@@ -25,6 +27,12 @@ class AddAProjectActivity : AppCompatActivity() {
     lateinit var saveprojectBtn: Button
     lateinit var gobackBtn: FloatingActionButton
 
+    private lateinit var settingsButton : ImageButton //- R
+    private lateinit var timerButton: ImageButton
+    private lateinit var filterButton: ImageButton
+    private lateinit var homeButton: ImageButton
+    private lateinit var projectButton: ImageButton
+
     private val projectDB = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +42,36 @@ class AddAProjectActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        settingsButton = findViewById(R.id.navbarSettings)
+        settingsButton.setOnClickListener{
+            var KtoEIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(KtoEIntent)
+        }
+
+        timerButton = findViewById(R.id.navbarPomodoro)
+        timerButton.setOnClickListener{
+            var timerIntent = Intent(this, PomodoroActivity::class.java)
+            startActivity(timerIntent)
+        }
+
+        filterButton = findViewById(R.id.navbarFilter)
+        filterButton.setOnClickListener{
+            var filterIntent = Intent(this, FilterInformationActivty::class.java)
+            startActivity(filterIntent)
+        }
+
+        homeButton = findViewById(R.id.navbarHome)
+        homeButton.setOnClickListener{
+            var homeIntent = Intent(this, HomePageActivity::class.java)
+            startActivity(homeIntent)
+        }
+
+        projectButton = findViewById(R.id.navbarEntries)
+        projectButton.setOnClickListener{
+            var homeIntent = Intent(this, ViewProjectsActivity::class.java)
+            startActivity(homeIntent)
         }
 
         projectName = findViewById(R.id.APprojectNametxt)
@@ -88,6 +126,7 @@ class AddAProjectActivity : AppCompatActivity() {
             ddate = "null"
         }
         val newProject = Project(
+            projectID = "",
             firebaseUUID = userId,
             pname = pname,
             ddate = ddate,
@@ -99,6 +138,36 @@ class AddAProjectActivity : AppCompatActivity() {
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(this, "Project Added Successfully", Toast.LENGTH_SHORT).show()
             }
+
+        projectDB.collection("projects")
+            .whereEqualTo("firebaseUUID", userId)
+            .whereEqualTo("pname", pname)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val documentId = document.id
+                    val newData = mapOf(
+                        "ddate" to ddate,
+                        "firebaseUUID" to userId,
+                        "ghrs" to ghrs,
+                        "pname" to pname,
+                        "projectID" to documentId // Using document.id to store the Firestore document ID
+                    )
+                    projectDB.collection("projects").document(documentId)
+                        .update(newData)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "ProjectID Updated Successfully", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error updating ProjectID: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error getting documents: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+
+
     }
 
     private fun showDatePickerDialog() {

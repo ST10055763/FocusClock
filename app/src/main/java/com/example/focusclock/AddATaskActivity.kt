@@ -54,7 +54,7 @@ class AddATaskActivity : AppCompatActivity() {
             if (userId != null) {
 
                 createTask(userId)
-                val intent = Intent(this, ViewProjectsActivity::class.java)
+                val intent = Intent(this, HomePageActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -86,8 +86,8 @@ class AddATaskActivity : AppCompatActivity() {
                     val pname = document.getString("pname")?: ""
                     val ddate = document.getString("ddate")?: ""
                     val ghrs = document.getLong("ghrs")?.toInt() ?: 0
-                    val project = Project(firebaseUUID,pname, ddate, ghrs)
-                    projectList.add(project)
+                    //val project = Project(firebaseUUID,pname, ddate, ghrs)
+                    //projectList.add(project)
                 }
                 projects = projectList
                 populateprojectSpinner()
