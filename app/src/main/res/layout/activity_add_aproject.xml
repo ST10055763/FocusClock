@@ -67,8 +67,7 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="8dp"
         android:text="Due Date (Optional)"
         app:layout_constraintBottom_toTopOf="@+id/APDueDatetxt"
         app:layout_constraintStart_toStartOf="@+id/imageView8" />
