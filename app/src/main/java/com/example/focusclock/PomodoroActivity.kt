@@ -33,7 +33,6 @@ class PomodoroActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                // Timer finished, handle completion
                 tvTimer.text = "00:00"
             }
         }
