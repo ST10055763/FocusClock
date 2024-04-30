@@ -46,11 +46,12 @@
         app:srcCompat="@drawable/curvedorangebar" />
 
     <Button
-        android:id="@+id/edtHomeView"
+        android:id="@+id/edtLogOut"
         android:layout_width="173dp"
         android:layout_height="54dp"
         android:backgroundTint="#FF7F7F"
-        android:text="Button"
+        android:text="Log out"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
