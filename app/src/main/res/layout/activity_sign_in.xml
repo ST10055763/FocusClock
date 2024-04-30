@@ -32,7 +32,7 @@
         android:layout_marginBottom="528dp"
         android:text="Create your Focus Clock account"
         android:textColor="#444749"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/ivNonCatSep"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/SUFloatButRet" />
 
@@ -48,13 +48,13 @@
         android:hint="Full Name"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/ivNonCatSep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ivNonCatSep"
         android:layout_width="412dp"
         android:layout_height="0dp"
         android:layout_marginBottom="2dp"
@@ -104,7 +104,7 @@
         android:layout_marginBottom="18dp"
         android:backgroundTint="#FF6279E2"
         android:text="Sign-Up"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/ivNonCatSep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

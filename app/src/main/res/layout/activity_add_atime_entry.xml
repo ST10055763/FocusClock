@@ -8,7 +8,7 @@
     tools:context=".AddATimeEntryActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvVPNonCatHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvVPNonCatTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"

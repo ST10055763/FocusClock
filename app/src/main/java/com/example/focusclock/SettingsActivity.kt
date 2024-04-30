@@ -9,12 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.firestore.toObject
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -27,6 +23,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var btnUpdate : Button
     private lateinit var HomeButton : ImageButton //- R
     private lateinit var Username : TextView
+    private lateinit var LLogout : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
