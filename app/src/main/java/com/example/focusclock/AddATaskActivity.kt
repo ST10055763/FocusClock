@@ -42,7 +42,7 @@ class AddATaskActivity : AppCompatActivity() {
         selectAProject = findViewById(R.id.spinnerTSSelectProj)
         saveTaskBtn = findViewById(R.id.ATSavebutton)
         backFromAddTask = findViewById(R.id.ATfloatingBackButton)
-        saveTaskBtn.isEnabled = false
+        //saveTaskBtn.isEnabled = false
 
         val user = Firebase.auth.currentUser
         val userId = user?.uid
