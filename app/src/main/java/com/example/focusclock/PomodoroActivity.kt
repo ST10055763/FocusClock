@@ -17,10 +17,21 @@ class PomodoroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pomodoro)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        progressBar = findViewById(R.id.progressBar)
+
+        timer = object : CountDownTimer(totalTime, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val progress = millisUntilFinished.toInt()
+                progressBar.progress = progress
+            }
+
+            override fun onFinish() {
+                // Timer finished, handle completion
+            }
         }
+
+        timer.start()
+
     }
 }
