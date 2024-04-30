@@ -54,7 +54,7 @@ class AddATaskActivity : AppCompatActivity() {
             if (userId != null) {
 
                 createTask(userId)
-                val intent = Intent(this, ViewProjectsActivity::class.java)
+                val intent = Intent(this, HomePageActivity::class.java)
                 startActivity(intent)
             }
         }
