@@ -11,105 +11,127 @@
         android:id="@+id/textView17"
         android:layout_width="238dp"
         android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="150dp"
         android:text="Add A Project"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="61dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:text="Populate Your Project Details"
         android:textColor="#444749"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="117dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="327dp"
         android:layout_height="343dp"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="171dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
         tools:srcCompat="@color/backgroundGrey" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="Project Name: "
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="184dp" />
+        app:layout_constraintStart_toStartOf="@+id/APprojectNametxt"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
     <EditText
         android:id="@+id/APprojectNametxt"
         android:layout_width="309dp"
-        android:layout_height="46dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/white"
         android:ems="10"
+        android:hint="Project Name"
         android:inputType="text"
         android:text=""
-        android:hint="Project Name"
-        android:background="@color/white"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="211dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Due Date (Optional)"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="277dp" />
+        app:layout_constraintBottom_toTopOf="@+id/APDueDatetxt"
+        app:layout_constraintStart_toStartOf="@+id/imageView8" />
 
     <EditText
         android:id="@+id/APDueDatetxt"
         android:layout_width="309dp"
-        android:layout_height="46dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="170dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Due Date (e.g. dd/MM/yyyy)"
         android:inputType="text"
         android:text=""
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="307dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Goal Hours: "
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="373dp" />
+        app:layout_constraintBottom_toTopOf="@+id/APGoalHrstxt"
+        app:layout_constraintStart_toStartOf="@+id/imageView8" />
 
     <EditText
         android:id="@+id/APGoalHrstxt"
         android:layout_width="309dp"
-        android:layout_height="46dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="70dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Goal Hours"
         android:inputType="number"
         android:text=""
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="399dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8" />
 
     <Button
         android:id="@+id/APSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SAVE"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/fcOrange"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="453dp" />
+        android:text="SAVE"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/APGoalHrstxt" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/APfloatingBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:backgroundTint="@color/fcOrange"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="534dp" />
+        android:clickable="true"
+        android:contentDescription="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 </androidx.constraintlayout.widget.ConstraintLayout>
