@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -22,7 +23,7 @@ class AddAProjectActivity : AppCompatActivity() {
     lateinit var duedate: EditText
     lateinit var goalhrs: EditText
     lateinit var saveprojectBtn: Button
-    lateinit var gobackBtn: Button
+    lateinit var gobackBtn: FloatingActionButton
 
     private val projectDB = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
