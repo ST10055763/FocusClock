@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,7 +21,7 @@ class AddATaskActivity : AppCompatActivity() {
     lateinit var taskDescription: EditText
     lateinit var selectAProject: Spinner
     lateinit var saveTaskBtn: Button
-    lateinit var backFromAddTask: Button
+    lateinit var backFromAddTask: FloatingActionButton
     lateinit var projects : List<Project>
 
     private val Taskdb = FirebaseFirestore.getInstance()

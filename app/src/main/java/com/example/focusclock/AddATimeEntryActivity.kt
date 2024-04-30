@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.tasks.Tasks
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -29,8 +30,8 @@ import java.io.IOException
 import java.util.UUID
 
 class AddATimeEntryActivity : AppCompatActivity() {
-lateinit var backBtn:Button
-lateinit var addTaskBtn: Button
+lateinit var backBtn:FloatingActionButton
+lateinit var addTaskBtn: FloatingActionButton
 lateinit var logBtn: Button
 lateinit var timeEntryPic : ImageButton
 lateinit var timeEntryProject : Spinner
