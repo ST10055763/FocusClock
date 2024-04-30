@@ -44,13 +44,15 @@ class AddATaskActivity : AppCompatActivity() {
         backFromAddTask = findViewById(R.id.ATfloatingBackButton)
         saveTaskBtn.isEnabled = false
 
-        fetchFireStoreProjects()
+        val user = Firebase.auth.currentUser
+        val userId = user?.uid
+
+        fetchFireStoreProjects(userId)
 
 
         saveTaskBtn.setOnClickListener {
             // val userId = FirebaseAuth.getInstance().currentUser?.uid
-            val user = Firebase.auth.currentUser
-            val userId = user?.uid
+
             if (userId != null) {
 
                 createTask(userId)
@@ -74,11 +76,13 @@ class AddATaskActivity : AppCompatActivity() {
         selectAProject.adapter = adapter
 
     }
-    fun fetchFireStoreProjects()
+    fun fetchFireStoreProjects(userID: String?)
     {
         db=FirebaseFirestore.getInstance()
         val progref = db.collection("projects")
-        progref.get()
+        progref
+            .whereEqualTo("firebaseUUID", userID)
+            .get()
             .addOnSuccessListener { querySnapshot ->
                 val projectList = mutableListOf<Project>()
                 for (document in querySnapshot.documents) {
