@@ -7,9 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ViewProjectsActivity : AppCompatActivity() {
-    lateinit var addProject : Button
+
+    private lateinit var addProject : FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,6 +21,7 @@ class ViewProjectsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         addProject = findViewById(R.id.floatActButVPAddProj)
         addProject.setOnClickListener{
             var returnLoginIntent = Intent(this, AddAProjectActivity::class.java)
