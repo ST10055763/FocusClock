@@ -66,6 +66,10 @@ class AddAProjectActivity : AppCompatActivity() {
             finish()
         }
 
+        duedate.setOnClickListener{
+            showDatePickerDialog()
+        }
+
 
     }
     fun createProject(userId: String)
