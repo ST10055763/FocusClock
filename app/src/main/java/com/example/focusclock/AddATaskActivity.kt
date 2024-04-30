@@ -22,7 +22,7 @@ class AddATaskActivity : AppCompatActivity() {
     lateinit var selectAProject: Spinner
     lateinit var saveTaskBtn: Button
     lateinit var backFromAddTask: FloatingActionButton
-    lateinit var projects : List<Project>
+    var projects : List<String> = emptyList()
 
     private val Taskdb = FirebaseFirestore.getInstance()
     // db may be redundant, but would rather use in case of confusion leading to loss of data
@@ -76,9 +76,8 @@ class AddATaskActivity : AppCompatActivity() {
         selectAProject.adapter = adapter
 
     }
-    fun fetchFireStoreProjects(userID: String?)
-    {
-        db=FirebaseFirestore.getInstance()
+    fun fetchFireStoreProjects(userID: String?) {
+        db = FirebaseFirestore.getInstance()
         val progref = db.collection("projects")
         progref
             .whereEqualTo("firebaseUUID", userID)
@@ -86,29 +85,24 @@ class AddATaskActivity : AppCompatActivity() {
             .addOnSuccessListener { querySnapshot ->
                 val projectList = mutableListOf<String>()
                 for (document in querySnapshot.documents) {
-
-                    val pname = document.getString("pname")?: ""
-
-
+                    val pname = document.getString("pname") ?: ""
                     projectList.add(pname)
                 }
-                //projects = projectList
+                projects = projectList // Update projects with fetched project names
                 populateprojectSpinner(projectList)
                 saveTaskBtn.isEnabled = true
             }
     }
-    fun createTask(userId: String)
-    {
+    fun createTask(userId: String) {
         val tname = taskname.text.toString()
         val tdescription = taskDescription.text.toString()
 
-        if(tname.isEmpty() || tdescription.isEmpty())
-        {
+        if(tname.isEmpty() || tdescription.isEmpty() || projects.isEmpty()) {
             Toast.makeText(this, "Please Fill In All Necessary Task Details", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val selectedProject = projects[selectAProject.selectedItemPosition].toString()
+        val selectedProject = projects[selectAProject.selectedItemPosition] // Access project name from projects list
         val task = Task(
             firebaseUUID = userId,
             tname = tname,
@@ -119,8 +113,6 @@ class AddATaskActivity : AppCompatActivity() {
             .add(task)
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(this, "Task Added Successfully", Toast.LENGTH_SHORT).show()
-
             }
-
     }
 }

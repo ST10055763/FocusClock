@@ -155,9 +155,9 @@ lateinit var proj: List<Project>
                     val tdescription = document.getString("tdescription")
                     val projectID = document.getString("selectedproject")
                     //val project = fetchFireStoreProjects(projectID)
-                    val project = proj.find { it.pname == projectID }
-                    val task = Task(firebaseUUID, tname, tdescription, project)
-                    taskList.add(task)
+                    //val project = proj.find { it.pname == projectID }
+                    // val task = Task(firebaseUUID, tname, tdescription, project)
+                    // taskList.add(task)
                 }
                 t=taskList
                 populatetaskSpinner()
