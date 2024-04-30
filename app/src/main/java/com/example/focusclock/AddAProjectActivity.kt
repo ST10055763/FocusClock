@@ -141,7 +141,7 @@ class AddAProjectActivity : AppCompatActivity() {
 
         projectDB.collection("projects")
             .whereEqualTo("firebaseUUID", userId)
-            .whereEqualTo("projectName", pname)
+            .whereEqualTo("pname", pname)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
