@@ -68,10 +68,10 @@ class AddATaskActivity : AppCompatActivity() {
         }
 
     }
-    fun populateprojectSpinner()
+    fun populateprojectSpinner(projectList: List<String>)
     {
-        val projectName = projects.map { it.pname }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectName)
+        //val projectName = projects.map { it.pname }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         selectAProject.adapter = adapter
 
@@ -84,17 +84,16 @@ class AddATaskActivity : AppCompatActivity() {
             .whereEqualTo("firebaseUUID", userID)
             .get()
             .addOnSuccessListener { querySnapshot ->
-                val projectList = mutableListOf<Project>()
+                val projectList = mutableListOf<String>()
                 for (document in querySnapshot.documents) {
-                    val firebaseUUID = document.getString("firebaseUUID")
+
                     val pname = document.getString("pname")?: ""
-                    val ddate = document.getString("ddate")?: ""
-                    val ghrs = document.getLong("ghrs")?.toInt() ?: 0
-                    //val project = Project(firebaseUUID,pname, ddate, ghrs)
-                    //projectList.add(project)
+
+
+                    projectList.add(pname)
                 }
-                projects = projectList
-                populateprojectSpinner()
+                //projects = projectList
+                populateprojectSpinner(projectList)
                 saveTaskBtn.isEnabled = true
             }
     }
@@ -109,7 +108,7 @@ class AddATaskActivity : AppCompatActivity() {
             return
         }
 
-        val selectedProject = projects[selectAProject.selectedItemPosition]
+        val selectedProject = projects[selectAProject.selectedItemPosition].toString()
         val task = Task(
             firebaseUUID = userId,
             tname = tname,
