@@ -12,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -27,6 +28,7 @@ class HomePageActivity : AppCompatActivity() {
     private lateinit var filterButton: ImageButton
     private lateinit var homeButton: ImageButton
     private lateinit var projectButton: ImageButton
+    private lateinit var addTimeEntryButton: FloatingActionButton
 
 
     private lateinit var tvDateHeader : TextView
@@ -71,6 +73,12 @@ class HomePageActivity : AppCompatActivity() {
         projectButton.setOnClickListener{
             var homeIntent = Intent(this, ViewProjectsActivity::class.java)
             startActivity(homeIntent)
+        }
+
+        addTimeEntryButton = findViewById(R.id.floatABHomeAdd)
+        addTimeEntryButton.setOnClickListener{
+            var addTimeIntent = Intent(this, AddATimeEntryActivity::class.java)
+            startActivity(addTimeIntent)
         }
 
         // Retrieve firebaseUUID from Intent extras
