@@ -134,8 +134,8 @@ lateinit var proj: List<Project>
                     val pname = document.getString("pname")?: ""
                     val ddate = document.getString("ddate")?: ""
                     val ghrs = document.getLong("ghrs")?.toInt() ?: 0
-                    val project = Project(firebaseUUID,pname, ddate, ghrs)
-                    projectList.add(project)
+                    //val project = Project(firebaseUUID,pname, ddate, ghrs)
+                    // projectList.add(project)
                 }
                 proj = projectList
                 populateprojectSpinner()

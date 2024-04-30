@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 import java.util.Locale
@@ -125,6 +126,7 @@ class AddAProjectActivity : AppCompatActivity() {
             ddate = "null"
         }
         val newProject = Project(
+            projectID = "",
             firebaseUUID = userId,
             pname = pname,
             ddate = ddate,
@@ -136,6 +138,36 @@ class AddAProjectActivity : AppCompatActivity() {
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(this, "Project Added Successfully", Toast.LENGTH_SHORT).show()
             }
+
+        projectDB.collection("projects")
+            .whereEqualTo("firebaseUUID", userId)
+            .whereEqualTo("projectName", pname)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val documentId = document.id
+                    val newData = mapOf(
+                        "ddate" to ddate,
+                        "firebaseUUID" to userId,
+                        "ghrs" to ghrs,
+                        "pname" to pname,
+                        "projectID" to documentId // Using document.id to store the Firestore document ID
+                    )
+                    projectDB.collection("projects").document(documentId)
+                        .update(newData)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "ProjectID Updated Successfully", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error updating ProjectID: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error getting documents: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+
+
     }
 
     private fun showDatePickerDialog() {
