@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/fcOrange"
+    android:backgroundTint="@color/fcOrange"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvFIProjName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Project Name" />
+
+    <TextView
+        android:id="@+id/tvFITaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task Name"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/ivFISeparator"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        tools:srcCompat="@color/black" />
+
+    <TextView
+        android:id="@+id/tvFIDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/tvFIDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duration" />
+</LinearLayout>
