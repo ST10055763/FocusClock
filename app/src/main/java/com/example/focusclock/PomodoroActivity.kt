@@ -3,6 +3,9 @@ package com.example.focusclock
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
@@ -25,6 +28,7 @@ class PomodoroActivity : AppCompatActivity() {
     lateinit var timer5Min: CountDownTimer
     lateinit var redirect: ImageButton
     lateinit var db : FirebaseFirestore
+    lateinit var taskAdapter: ArrayAdapter<String>
     var projects : List<String> = emptyList()
     var tasks : List<String> = emptyList()
     val totalTime = 1500000L // 25 minutes in milliseconds
@@ -41,14 +45,19 @@ class PomodoroActivity : AppCompatActivity() {
         selectedAProject = findViewById(R.id.spinProjects)
         selectedATask = findViewById(R.id.spinTasks)
 
+        timer5Min = object : CountDownTimer(0, 1000) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {}
+        }
+
+        taskAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, emptyArray())
+        taskAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        selectedATask.adapter = taskAdapter
+
         val user = Firebase.auth.currentUser
         val userId = user?.uid
 
         fetchProjects(userId)
-
-        val  chosenProject = projects[selectedAProject.selectedItemPosition]
-        fetchTasks(userId, chosenProject)
-        val  chosenTask = tasks[selectedATask.selectedItemPosition]
 
         val startSessionbutton: Button = findViewById(R.id.startButton)
         val stopButton: Button = findViewById(R.id.stopButton)
@@ -67,7 +76,7 @@ class PomodoroActivity : AppCompatActivity() {
 
     }
 
-    fun fetchTasks(userID: String?, chosenProject: String) {
+    fun fetchTasks(userID: String?, chosenProject: String, taskSpinner: Spinner) {
         db = FirebaseFirestore.getInstance()
         val taskRef = db.collection("task")
         taskRef
@@ -81,14 +90,18 @@ class PomodoroActivity : AppCompatActivity() {
                     taskList.add(tname)
                 }
                 tasks = taskList
+                Log.d("PomodoroActivity", "Task list fetched: $taskList")
                 populateTask(taskList)
+            }
+            .addOnFailureListener { e ->
+                Log.e("PomodoroActivity", "Error fetching tasks: $e")
             }
     }
 
     fun populateTask(taskList: List<String>) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, taskList)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        selectedATask.adapter = adapter
+        taskAdapter.clear()
+        taskAdapter.addAll(taskList)
+        taskAdapter.notifyDataSetChanged()
     }
 
     fun fetchProjects(userID: String?) {
@@ -105,6 +118,21 @@ class PomodoroActivity : AppCompatActivity() {
                 }
                 projects = projectList // Update projects with fetched project names
                 populateprojectSpinner(projectList)
+                selectedAProject.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val chosenProject = projects[position]
+                        fetchTasks(userID, chosenProject, selectedATask)
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                    }
+                }
             }
     }
 
@@ -122,7 +150,9 @@ class PomodoroActivity : AppCompatActivity() {
 
     private fun stopSession() {
         timer25Min.cancel()
-        timer5Min.cancel()
+        if (timer5Min != null) {
+            timer5Min.cancel()
+        }
     }
 
     private fun startTimer25Min() {
