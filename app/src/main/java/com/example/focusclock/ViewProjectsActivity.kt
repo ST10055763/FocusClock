@@ -85,9 +85,14 @@ class ViewProjectsActivity : AppCompatActivity() {
         // Set a layout manager (e.g., LinearLayoutManager)
         projectsRecyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Add ItemDecoration with desired spacing
+        val itemDecoration = SpaceItemDecoration(spaceHeight = resources.getDimensionPixelSize(R.dimen.item_spacing))
+        projectsRecyclerView.addItemDecoration(itemDecoration)
+
         val user = Firebase.auth.currentUser
         val userId = user?.uid
         fetchAndPopulateFireStoreProjects(userId)
+
     }
 
     private fun fetchAndPopulateFireStoreProjects(userID: String?) {
