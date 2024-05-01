@@ -46,7 +46,7 @@
         app:srcCompat="@drawable/curvedorangebar" />
 
     <Button
-        android:id="@+id/edtLogOut"
+        android:id="@+id/btnLogOut"
         android:layout_width="173dp"
         android:layout_height="54dp"
         android:backgroundTint="#FF7F7F"
