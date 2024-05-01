@@ -12,10 +12,14 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class PomodoroActivity : AppCompatActivity() {
     lateinit var progressBar25Min: ProgressBar
@@ -28,7 +32,6 @@ class PomodoroActivity : AppCompatActivity() {
     lateinit var timer5Min: CountDownTimer
     lateinit var redirect: ImageButton
     lateinit var db : FirebaseFirestore
-    lateinit var taskAdapter: ArrayAdapter<String>
     var projects : List<String> = emptyList()
     var tasks : List<String> = emptyList()
     val totalTime = 1500000L // 25 minutes in milliseconds
@@ -50,22 +53,21 @@ class PomodoroActivity : AppCompatActivity() {
             override fun onFinish() {}
         }
 
-        taskAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, emptyArray())
-        taskAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        selectedATask.adapter = taskAdapter
-
         val user = Firebase.auth.currentUser
         val userId = user?.uid
+        val TimeEntrydb = FirebaseFirestore.getInstance()
 
         fetchProjects(userId)
-
+        fetchTasks(userId)
+        var startTime = getCurrentTime()
         val startSessionbutton: Button = findViewById(R.id.startButton)
         val stopButton: Button = findViewById(R.id.stopButton)
         startSessionbutton.setOnClickListener {
+            startTime = getCurrentTime()
             startSession()
         }
         stopButton.setOnClickListener {
-            stopSession()
+            stopSession(startTime)
         }
 
         redirect = findViewById(R.id.btnTasksRedirect)
@@ -76,12 +78,11 @@ class PomodoroActivity : AppCompatActivity() {
 
     }
 
-    fun fetchTasks(userID: String?, chosenProject: String, taskSpinner: Spinner) {
+    fun fetchTasks(userID: String?) {
         db = FirebaseFirestore.getInstance()
-        val taskRef = db.collection("task")
-        taskRef
+        val taskref = db.collection("task")
+        taskref
             .whereEqualTo("firebaseUUID", userID)
-            .whereEqualTo("pname", chosenProject)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 val taskList = mutableListOf<String>()
@@ -90,18 +91,14 @@ class PomodoroActivity : AppCompatActivity() {
                     taskList.add(tname)
                 }
                 tasks = taskList
-                Log.d("PomodoroActivity", "Task list fetched: $taskList")
                 populateTask(taskList)
-            }
-            .addOnFailureListener { e ->
-                Log.e("PomodoroActivity", "Error fetching tasks: $e")
             }
     }
 
     fun populateTask(taskList: List<String>) {
-        taskAdapter.clear()
-        taskAdapter.addAll(taskList)
-        taskAdapter.notifyDataSetChanged()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, taskList)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        selectedATask.adapter = adapter
     }
 
     fun fetchProjects(userID: String?) {
@@ -125,8 +122,7 @@ class PomodoroActivity : AppCompatActivity() {
                         position: Int,
                         id: Long
                     ) {
-                        val chosenProject = projects[position]
-                        fetchTasks(userID, chosenProject, selectedATask)
+                        //val chosenProject = projects[position]
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -148,11 +144,50 @@ class PomodoroActivity : AppCompatActivity() {
         startTimer25Min()
     }
 
-    private fun stopSession() {
+    private fun stopSession(startTime: String) {
         timer25Min.cancel()
         if (timer5Min != null) {
             timer5Min.cancel()
         }
+
+        val user = Firebase.auth.currentUser
+        val userId = user?.uid
+        val db = Firebase.firestore
+        val currentDate = getCurrentDate()
+        val selectedTask = selectedATask.selectedItem.toString()
+        val selectedProject = selectedAProject.selectedItem.toString()
+
+        // Create a new time entry object
+        val timeEntry = TimeEntry(
+            currentDate,
+            userId,
+            startTime, // You need to set startTime somewhere before this
+            getCurrentTime(), // You need to implement getCurrentTime() function
+            selectedTask,
+            selectedProject
+        )
+
+        // Add the time entry to Firestore
+        db.collection("time_entries")
+            .add(timeEntry)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(this, "Time Entry Added Successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Time Entry was not added ", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun getCurrentDate(): String {
+        val currentDate = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        return formatter.format(currentDate)
+    }
+
+    fun getCurrentTime(): String {
+        val currentTime = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+        return formatter.format(currentTime)
     }
 
     private fun startTimer25Min() {
