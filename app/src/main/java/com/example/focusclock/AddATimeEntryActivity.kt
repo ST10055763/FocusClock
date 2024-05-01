@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.UUID
@@ -41,8 +42,8 @@ lateinit var timeEntryProject : Spinner
 lateinit var timeEntryTask:Spinner
 lateinit var timeEntryStartTime : EditText
 lateinit var timeEntryEndTime : EditText
-lateinit var t: List<Task>
-lateinit var proj: List<Project>
+ var t: List<String> = emptyList()
+ var proj: List<String> = emptyList()
 
     private val TimeEntrydb = FirebaseFirestore.getInstance()
     // db may be redundant, but would rather use in case of confusion leading to loss of data
@@ -77,8 +78,11 @@ lateinit var proj: List<Project>
         timeEntryEndTime = findViewById(R.id.AEendTimetxt)
         timeEntryPic = findViewById(R.id.AEAddPictureBtn)
 
-        fetchFireStoreProjects()
-        fetchFireStoreTasks()
+
+        val user = Firebase.auth.currentUser
+        val userId = user?.uid
+        fetchFireStoreProjects(userId)
+        fetchFireStoreTasks(userId)
 
         timeEntryStartTime.setOnClickListener{
             showTimePickerDialog(isStartTime = true)
@@ -90,8 +94,8 @@ lateinit var proj: List<Project>
 
         logBtn.setOnClickListener {
              //val userId = FirebaseAuth.getInstance().currentUser?.uid
-            val user = Firebase.auth.currentUser
-            val userId = user?.uid
+            //val user = Firebase.auth.currentUser
+            //val userId = user?.uid
             if (userId != null) {
 
                 createTimeEntry(userId)
@@ -117,61 +121,67 @@ lateinit var proj: List<Project>
         }
 
     }
-    fun populateprojectSpinner()
+    fun populateprojectSpinner(projectList: List<String>)
     {
-        val projectName = proj.map { it.pname }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectName)
+        //val projectName = proj.map { it.pname }
+        //val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectName)
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        //timeEntryProject.adapter = adapter
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         timeEntryProject.adapter = adapter
 
     }
-    fun populatetaskSpinner()
+    fun populatetaskSpinner(taskList: List<String>)
     {
-        val taskname = t.map { it.tname }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, taskname)
+       // val taskname = t.map { it.tname }
+        //val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, taskname)
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        //timeEntryTask.adapter = adapter
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, taskList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         timeEntryTask.adapter = adapter
 
     }
-    fun fetchFireStoreProjects()
+    fun getCurrentDate(): String
     {
-        db=FirebaseFirestore.getInstance()
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+        return dateFormat.format(calendar.time)
+    }
+    fun fetchFireStoreProjects(userId: String?)
+    {
+        db = FirebaseFirestore.getInstance()
         val progref = db.collection("projects")
-        progref.get()
+        progref
+            .whereEqualTo("firebaseUUID", userId)
+            .get()
             .addOnSuccessListener { querySnapshot ->
-                val projectList = mutableListOf<Project>()
+                val projectList = mutableListOf<String>()
                 for (document in querySnapshot.documents) {
-                    val firebaseUUID = document.getString("firebaseUUID")
-                    val pname = document.getString("pname")?: ""
-                    val ddate = document.getString("ddate")?: ""
-                    val ghrs = document.getLong("ghrs")?.toInt() ?: 0
-                    //val project = Project(firebaseUUID,pname, ddate, ghrs)
-                    // projectList.add(project)
+                    val pname = document.getString("pname") ?: ""
+                    projectList.add(pname)
                 }
-                proj = projectList
-                populateprojectSpinner()
-                //addTaskBtn.isEnabled = true
+                proj = projectList // Update projects with fetched project names
+                populateprojectSpinner(projectList)
+                //saveTaskBtn.isEnabled = true
             }
     }
-    fun fetchFireStoreTasks()
+    fun fetchFireStoreTasks(userId: String?)
     {
         db = FirebaseFirestore.getInstance()
         val taskref = db.collection("task")
-        taskref.get()
+        taskref
+            .whereEqualTo("firebaseUUID", userId)
+            .get()
             .addOnSuccessListener { querySnapshot ->
-                val taskList = mutableListOf<Task>()
+                val taskList = mutableListOf<String>()
                 for (document in querySnapshot.documents) {
-                    val firebaseUUID = document.getString("firebaseUUID")
-                    val tname = document.getString("tname")
-                    val tdescription = document.getString("tdescription")
-                    val projectID = document.getString("selectedproject")
-                    //val project = fetchFireStoreProjects(projectID)
-                    //val project = proj.find { it.pname == projectID }
-                    // val task = Task(firebaseUUID, tname, tdescription, project)
-                    // taskList.add(task)
+                    val tname = document.getString("tname") ?: ""
+                    taskList.add(tname)
                 }
-                t=taskList
-                populatetaskSpinner()
+                t = taskList
+                populatetaskSpinner(taskList)
             }
     }
 
@@ -268,6 +278,7 @@ lateinit var proj: List<Project>
     {
         val startTime = timeEntryStartTime.text.toString()
         val endTime = timeEntryEndTime.text.toString()
+        //val currentDate = getCurrentDate().text
 
         if(startTime.isEmpty() || endTime.isEmpty())
         {
@@ -287,15 +298,16 @@ lateinit var proj: List<Project>
             imageUriFStorage = "null"
         }
 
-        val entryProject = proj[timeEntryProject.selectedItemPosition]
-        val selectedTask = t[timeEntryTask.selectedItemPosition]
+        val entryProject = proj[timeEntryProject.selectedItemPosition]//correct
+        val selectedTask = t[timeEntryTask.selectedItemPosition]//correct
         val timeEntry = TimeEntry(
             firebaseUUID = userId,
             startTime = startTime,
             endTime = endTime,
             selectedTask = selectedTask,
             entryProject = entryProject,
-            timeEntryPicRef = imageUriFStorage
+            timeEntryPicRef = imageUriFStorage,
+            currentDate = getCurrentDate()
         )
         TimeEntrydb.collection("timeentry")
             .add(timeEntry)
