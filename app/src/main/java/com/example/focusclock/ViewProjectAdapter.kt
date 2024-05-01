@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewProjectAdapter (private val projects: List<Project>) : RecyclerView.Adapter<ProjectViewHolder>() {
+class ViewProjectAdapter (private val projects: List<ProjectDisplay>) : RecyclerView.Adapter<ProjectViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.project_item_layout, parent, false)

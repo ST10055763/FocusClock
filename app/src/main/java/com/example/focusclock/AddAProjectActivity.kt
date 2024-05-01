@@ -130,7 +130,7 @@ class AddAProjectActivity : AppCompatActivity() {
             firebaseUUID = userId,
             pname = pname,
             ddate = ddate,
-            ghrs = ghrs.toInt()
+            ghrs = ghrs
         )
 
         projectDB.collection("projects")

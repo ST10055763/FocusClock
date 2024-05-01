@@ -7,5 +7,5 @@ data class Project (
     val firebaseUUID: String?,
     val pname: String,
     val ddate: String,
-    val ghrs: Int
+    val ghrs: String
 )
