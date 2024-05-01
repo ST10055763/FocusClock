@@ -71,7 +71,7 @@ class PomodoroActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         val taskRef = db.collection("task")
         taskRef
-            .whereEqualTo("firebaseUUID", uid)
+            .whereEqualTo("firebaseUUID", userID)
             .whereEqualTo("pname", chosenProject)
             .get()
             .addOnSuccessListener { querySnapshot ->
