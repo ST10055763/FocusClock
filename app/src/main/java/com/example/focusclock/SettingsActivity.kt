@@ -67,6 +67,16 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(homeIntent)
         }
 
+        //logging out the current user
+        LLogout = findViewById(R.id.btnLogOut)
+        LLogout.setOnClickListener{
+            val auth = FirebaseAuth.getInstance()
+            val uid = auth.currentUser?.uid
+            auth.signOut()
+            var LogoutIntent = Intent(this, MainActivity::class.java)
+            startActivity(LogoutIntent)
+        }
+
         //initialising in button so new values are updated
         newEmail = findViewById(R.id.edtEmail)
         newFullname = findViewById(R.id.edtFullname)
