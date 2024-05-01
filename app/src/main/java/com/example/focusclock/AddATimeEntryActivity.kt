@@ -256,7 +256,7 @@ lateinit var timeEntryEndTime : EditText
         }
     }
 
-    private fun uploadImageToFirebaseStorage() {
+    private fun uploadImageToFirebaseStorage(callback: ()-> Unit) {
         // Get a reference to where the image will be stored in Firebase Storage
         val imageRef = storageRef.child("timeentryimages/${UUID.randomUUID()}")
 
@@ -267,6 +267,7 @@ lateinit var timeEntryEndTime : EditText
             imageRef.downloadUrl.addOnSuccessListener { uri ->
                 //val imageUrl = uri.toString()
                 imageUriFStorage = uri.toString()
+                callback()
                 // Store image URL in Firestore
                 // storeImageUrlInFirestore(imageUrl)
             }
@@ -293,11 +294,14 @@ lateinit var timeEntryEndTime : EditText
 
         if (hasImage)
         {
-            uploadImageToFirebaseStorage()
+            uploadImageToFirebaseStorage{
+                createTimeEntry(userId)
+            }
         }
         else
         {
             imageUriFStorage = "null"
+            createTimeEntry(userId)
         }
 
         val entryProject = proj[timeEntryProject.selectedItemPosition]//correct
