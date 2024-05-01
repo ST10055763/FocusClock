@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#B3FFC107"
+    android:backgroundTint="#B3FFC107"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvPIPName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Project Name Here"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvPIDDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due Date Here"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/ivPISeparator"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#000000" />
+
+    <TextView
+        android:id="@+id/tvPITotalPop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Tasks"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvPIHoursPop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hours Done"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvPIGoalPop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goal Hours"
+        android:textSize="12sp" />
+</LinearLayout>
