@@ -139,8 +139,9 @@ class ViewProjectsActivity : AppCompatActivity() {
                     val endTimeString = document.getString("endTime") ?: ""
 
                     // Convert start time and end time to Date objects
-                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTimeString)
-                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTimeString)
+                    val dummyDate = "1970-01-01 "
+                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + startTimeString)
+                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + endTimeString)
 
                     // Calculate the duration between start time and end time in milliseconds
                     val durationMillis = endTime.time - startTime.time
