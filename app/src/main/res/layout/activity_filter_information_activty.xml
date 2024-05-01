@@ -136,8 +136,8 @@
 
     <Spinner
         android:id="@+id/spinnerFPFilterBy"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
+        android:layout_width="292dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/floatActBtnFISearch"
         app:layout_constraintHorizontal_bias="0.678"
@@ -146,30 +146,18 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <ImageView
-        android:id="@+id/tvFIDateBack"
-        android:layout_width="358dp"
-        android:layout_height="75dp"
+        android:id="@+id/ivFIDateBack"
+        android:layout_width="352dp"
+        android:layout_height="74dp"
+        android:background="@color/fcBlue"
+        android:backgroundTint="@color/fcBlue"
         app:layout_constraintBottom_toTopOf="@+id/tvFIEntries"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintHorizontal_bias="0.322"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795"
+        app:layout_constraintVertical_bias="0.802"
         tools:srcCompat="@color/fcBlue" />
-
-    <TextView
-        android:id="@+id/tvFIStartDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Start Date:"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/edtFIStartDate"
-        app:layout_constraintEnd_toEndOf="@+id/edtFIStartDate"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="@+id/tvFIDateBack"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerFPFilterBy"
-        app:layout_constraintVertical_bias="0.75" />
 
     <EditText
         android:id="@+id/edtFIStartDate"
@@ -181,51 +169,37 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/recViewFIEntries"
         app:layout_constraintEnd_toStartOf="@+id/edtFIEndDate"
-        app:layout_constraintHorizontal_bias="0.135"
-        app:layout_constraintStart_toStartOf="@+id/tvFIDateBack"
+        app:layout_constraintHorizontal_bias="0.161"
+        app:layout_constraintStart_toStartOf="@+id/ivFIDateBack"
         app:layout_constraintTop_toBottomOf="@+id/spinnerFPFilterBy"
-        app:layout_constraintVertical_bias="0.221" />
-
-    <TextView
-        android:id="@+id/tvFIEndDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="End Date:"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/edtFIEndDate"
-        app:layout_constraintEnd_toEndOf="@+id/edtFIEndDate"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtFIEndDate"
-        app:layout_constraintTop_toTopOf="@+id/tvFIDateBack"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.155" />
 
     <EditText
         android:id="@+id/edtFIEndDate"
         android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="End Date"
         android:inputType="date"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/tvFIDateBack"
-        app:layout_constraintHorizontal_bias="0.899"
-        app:layout_constraintStart_toStartOf="@+id/tvFIDateBack"
+        app:layout_constraintEnd_toEndOf="@+id/ivFIDateBack"
+        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintStart_toStartOf="@+id/ivFIDateBack"
         app:layout_constraintTop_toBottomOf="@+id/spinnerFPFilterBy" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatActBtnFISearch"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginTop="168dp"
         android:clickable="true"
         android:contentDescription="search"
         app:backgroundTint="#FF7F7F"
-        app:layout_constraintBottom_toTopOf="@+id/tvFIEndDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
     <TextView
