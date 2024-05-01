@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.storage
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -50,6 +51,7 @@ lateinit var timeEntryEndTime : EditText
     lateinit var db : FirebaseFirestore
 
     private lateinit var storageRef: StorageReference
+
     private lateinit var imageUri: Uri
     private lateinit var imageUriFStorage: String
     private var currentPhotoPath: String? = null
@@ -78,7 +80,7 @@ lateinit var timeEntryEndTime : EditText
         timeEntryEndTime = findViewById(R.id.AEendTimetxt)
         timeEntryPic = findViewById(R.id.AEAddPictureBtn)
 
-
+        storageRef = Firebase.storage.reference
         val user = Firebase.auth.currentUser
         val userId = user?.uid
         fetchFireStoreProjects(userId)
@@ -254,7 +256,7 @@ lateinit var timeEntryEndTime : EditText
         }
     }
 
-    private fun uploadImageToFirebaseStorage() {
+    private fun uploadImageToFirebaseStorage(callback: ()-> Unit) {
         // Get a reference to where the image will be stored in Firebase Storage
         val imageRef = storageRef.child("timeentryimages/${UUID.randomUUID()}")
 
@@ -265,6 +267,7 @@ lateinit var timeEntryEndTime : EditText
             imageRef.downloadUrl.addOnSuccessListener { uri ->
                 //val imageUrl = uri.toString()
                 imageUriFStorage = uri.toString()
+                callback()
                 // Store image URL in Firestore
                 // storeImageUrlInFirestore(imageUrl)
             }
@@ -291,11 +294,14 @@ lateinit var timeEntryEndTime : EditText
 
         if (hasImage)
         {
-            uploadImageToFirebaseStorage()
+            uploadImageToFirebaseStorage{
+                createTimeEntry(userId)
+            }
         }
         else
         {
             imageUriFStorage = "null"
+            createTimeEntry(userId)
         }
 
         val entryProject = proj[timeEntryProject.selectedItemPosition]//correct

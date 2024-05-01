@@ -10,5 +10,5 @@ data class TimeEntry (
     val endTime : String?,
     val selectedTask: String?,
     val entryProject : String?,
-    val timeEntryPicRef:String?,
+    val timeEntryPicRef:String? = ""
 )
