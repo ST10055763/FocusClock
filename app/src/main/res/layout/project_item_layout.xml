@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/fcOrange"
-    android:backgroundTint="@color/fcOrange"
+    android:background="@color/backgroundGrey"
+    android:backgroundTint="@color/backgroundGrey"
     android:orientation="vertical"
     android:padding="8dp">
 

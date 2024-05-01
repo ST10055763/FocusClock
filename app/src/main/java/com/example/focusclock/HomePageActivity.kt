@@ -12,7 +12,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -30,10 +34,21 @@ class HomePageActivity : AppCompatActivity() {
     private lateinit var projectButton: ImageButton
     private lateinit var addTimeEntryButton: FloatingActionButton
 
-
     private lateinit var tvDateHeader : TextView
     private lateinit var tvUserHeader: TextView
-//    private lateinit var edtHomeEnterDate: EditText
+    private lateinit var tvHomeHours: TextView
+    private lateinit var btnMinGoals: Button
+    private lateinit var btnMaxGoals: Button
+    private lateinit var tvHomeTasksDone: TextView
+
+    private lateinit var timeentriesRecyclerView: RecyclerView
+    private val timeentries = mutableListOf<TimeEntryHomeDisplay>()
+    private lateinit var adapter: HomePageAdapter
+
+    // Define mutable variables for tasksDone and hoursToday
+    private var tasksDone: Int = 0
+    private var hoursToday: Double = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -81,16 +96,38 @@ class HomePageActivity : AppCompatActivity() {
             startActivity(addTimeIntent)
         }
 
+        var maxHours: Int = 0
+        var minHours: Int = 0
+
         // Retrieve firebaseUUID from Intent extras
-        val firebaseUUID = intent.getStringExtra("firebaseUUID")
+        //val firebaseUUID = intent.getStringExtra("firebaseUUID")
+        val user = Firebase.auth.currentUser
+        val firebaseUUID = user?.uid
 
         // Retrieve current date
         val currentDate = getCurrentDate()
+
+        // CODE HERE
+        timeentriesRecyclerView = findViewById(R.id.recviewHomeTimeLogs)
+        adapter = HomePageAdapter(timeentries)
+        timeentriesRecyclerView.adapter = adapter
+
+        // Set a layout manager (e.g., LinearLayoutManager)
+        timeentriesRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Add ItemDecoration with desired spacing
+        val itemDecoration = SpaceItemDecoration(spaceHeight = resources.getDimensionPixelSize(R.dimen.item_spacing))
+        timeentriesRecyclerView.addItemDecoration(itemDecoration)
+
+        // fetch data here
+        fetchAndPopulateFireStoreHomeEntries(firebaseUUID, currentDate)
 
         tvDateHeader = findViewById(R.id.tvHomePageDateHeader)
         tvDateHeader.setText("Here's Todays Schedule " + currentDate)
 
         tvUserHeader = findViewById(R.id.tvHomePageUHeader)
+        tvHomeHours = findViewById(R.id.tvHomeHoursDone)
+        tvHomeTasksDone = findViewById(R.id.tvHomeTasksComplete)
 
         // Retrieve the document from Firestore based on userId
         if (firebaseUUID != null) {
@@ -99,12 +136,16 @@ class HomePageActivity : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
-                        // NOTE: CAN ALSO RETRIEVE MIN AND MAX HOURS HERE
                         // Document exists, retrieve the "fname" field
                         val fname = document.getString("fname")
+                        maxHours = document.getString("maxgoals")?.toInt() ?: 0
+                        minHours = document.getString("mingoals")?.toInt() ?: 0
                         if (fname != null) {
                             // fname is not null, you can use it
                             tvUserHeader.setText("Hello, " + fname)
+                            tvHomeHours.setText("${hoursToday} / ${minHours} Done Today")
+                            tvHomeTasksDone.setText("${tasksDone} Tasks Completed Today")
+
                         } else {
                             // fname is null, handle appropriately
                             Toast.makeText(this, "Failed to retrieve first name", Toast.LENGTH_SHORT).show()
@@ -120,31 +161,65 @@ class HomePageActivity : AppCompatActivity() {
                 }
         }
 
-//        edtHomeEnterDate = findViewById(R.id.edtHomeEnterDate)
+        // SORT OUT
+        btnMinGoals = findViewById(R.id.btnHomeMinGoal)
+        btnMaxGoals = findViewById(R.id.btnHomeMaxGoal)
 
-//        edtHomeEnterDate.setOnClickListener{
-//            showDatePickerDialog()
-//        }
+        btnMinGoals.setOnClickListener{
+            tvHomeHours.setText("${hoursToday} / ${minHours} Done Today")
+        }
+        btnMaxGoals.setOnClickListener{
+            tvHomeHours.setText("${hoursToday} / ${maxHours} Done Today")
+        }
 
     }
 
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
 
-//    private fun showDatePickerDialog() {
-//        val calendar = Calendar.getInstance()
-//        val year = calendar.get(Calendar.YEAR)
-//        val month = calendar.get(Calendar.MONTH)
-//        val day = calendar.get(Calendar.DAY_OF_MONTH)
-//
-//        val datePickerDialog = DatePickerDialog(this, {_, selectedYear, selectedMonth, selectedDay ->
-//            val selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", selectedMonth + 1, selectedDay, selectedYear)
-//            edtHomeEnterDate.setText(selectedDate)
-//        }, year, month, day)
-//
-//        datePickerDialog.show()
-//    }
+    private fun fetchAndPopulateFireStoreHomeEntries(userID: String?, currentDate: String)
+    {
+        val entriesref = db.collection("timeentry")
+        entriesref
+            .whereEqualTo("firebaseUUID", userID)
+            .whereEqualTo("dateentry", currentDate)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                for (document in querySnapshot.documents) {
+                    tasksDone += 1
+
+                    val firebaseUUID = document.getString("firebaseUUID") ?: ""
+                    val startTimeString = document.getString("startTime") ?: ""
+                    val endTimeString = document.getString("endTime") ?: ""
+                    val selectedTask = document.getString("selectedTask") ?: ""
+                    val entryProject = document.getString("entryProject") ?: ""
+                    val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
+                    val dateentry = document.getString("dateentry") ?: ""
+
+                    val currentEntry = TimeEntryHomeDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
+
+                    // Convert start time and end time to Date objects
+                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTimeString)
+                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTimeString)
+
+                    // Calculate the duration between start time and end time in milliseconds
+                    val durationMillis = endTime.time - startTime.time
+
+                    // Convert duration from milliseconds to hours
+                    val hours = durationMillis.toDouble() / (1000 * 60 * 60)
+
+                    // Update total hours
+                    hoursToday += hours
+                    currentEntry.durationTask = hours
+
+                    timeentries.add(currentEntry)
+                }
+                // After fetching data, notify the adapter of the change
+                adapter.notifyDataSetChanged()
+            }
+    }
+
 }
