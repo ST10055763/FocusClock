@@ -19,6 +19,7 @@ class PomodoroActivity : AppCompatActivity() {
     lateinit var tvTimer25Min: TextView
     lateinit var progressBar5Min: ProgressBar
     lateinit var selectedAProject: Spinner
+    lateinit var selectedATask: Spinner
     lateinit var tvTimer5Min: TextView
     lateinit var timer25Min: CountDownTimer
     lateinit var timer5Min: CountDownTimer
@@ -38,6 +39,7 @@ class PomodoroActivity : AppCompatActivity() {
         progressBar5Min = findViewById(R.id.progressBar5Min)
         tvTimer5Min = findViewById(R.id.tvTimer5Min)
         selectedAProject = findViewById(R.id.spinProjects)
+        selectedATask = findViewById(R.id.spinTasks)
 
         val user = Firebase.auth.currentUser
         val userId = user?.uid
@@ -45,6 +47,8 @@ class PomodoroActivity : AppCompatActivity() {
         fetchProjects(userId)
 
         val  chosenProject = projects[selectedAProject.selectedItemPosition]
+        fetchTasks(userId, chosenProject)
+        val  chosenTask = tasks[selectedATask.selectedItemPosition]
 
         val startSessionbutton: Button = findViewById(R.id.startButton)
         val stopButton: Button = findViewById(R.id.stopButton)
@@ -63,7 +67,7 @@ class PomodoroActivity : AppCompatActivity() {
 
     }
 
-    fun fetchTasks(uid: String, chosenProject: String) {
+    fun fetchTasks(userID: String?, chosenProject: String) {
         db = FirebaseFirestore.getInstance()
         val taskRef = db.collection("task")
         taskRef
@@ -76,11 +80,15 @@ class PomodoroActivity : AppCompatActivity() {
                     val tname = document.getString("tname") ?: ""
                     taskList.add(tname)
                 }
+                tasks = taskList
+                populateTask(taskList)
             }
     }
 
-    fun populateTask() {
-
+    fun populateTask(taskList: List<String>) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, taskList)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        selectedATask.adapter = adapter
     }
 
     fun fetchProjects(userID: String?) {
@@ -102,7 +110,6 @@ class PomodoroActivity : AppCompatActivity() {
 
     fun populateprojectSpinner(projectList: List<String>)
     {
-        //val projectName = projects.map { it.pname }
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         selectedAProject.adapter = adapter
