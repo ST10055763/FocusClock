@@ -176,7 +176,7 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
 
@@ -202,8 +202,9 @@ class HomePageActivity : AppCompatActivity() {
                     val currentEntry = TimeEntryHomeDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
 
                     // Convert start time and end time to Date objects
-                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTimeString)
-                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTimeString)
+                    val dummyDate = "1970-01-01 "
+                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + startTimeString)
+                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + endTimeString)
 
                     // Calculate the duration between start time and end time in milliseconds
                     val durationMillis = endTime.time - startTime.time
