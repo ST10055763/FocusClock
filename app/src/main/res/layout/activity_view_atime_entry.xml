@@ -195,23 +195,21 @@
         android:id="@+id/viewEndTime"
         android:layout_width="284dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="40dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="End Time"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryimageButton"
-        app:layout_constraintStart_toStartOf="@+id/tvHomeTasksComplete" />
+        app:layout_constraintStart_toStartOf="@+id/tvHomeTasksComplete"
+        tools:layout_editor_absoluteY="400dp" />
 
     <TextView
         android:id="@+id/tvHomeTasksComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:text="Picture (Optional)"
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryimageButton"
-        app:layout_constraintEnd_toStartOf="@+id/ViewEntryimageButton" />
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="459dp" />
 
     <TextView
         android:id="@+id/tvVPNonCatInsertTot"
@@ -222,17 +220,6 @@
         android:text="Task Name: "
         app:layout_constraintBottom_toTopOf="@+id/txtTName"
         app:layout_constraintEnd_toEndOf="@+id/txtTName" />
-
-    <ImageButton
-        android:id="@+id/ViewEntryimageButton"
-        android:layout_width="65dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="Add picture"
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryBackfloatingButton"
-        app:layout_constraintStart_toStartOf="@+id/ViewEntryBackfloatingButton"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ViewEntryBackfloatingButton"
@@ -247,4 +234,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageView
+        android:id="@+id/ImageViewComp"
+        android:layout_width="85dp"
+        android:layout_height="84dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.709"
+        app:srcCompat="@mipmap/fc_launcher" />
 </androidx.constraintlayout.widget.ConstraintLayout>

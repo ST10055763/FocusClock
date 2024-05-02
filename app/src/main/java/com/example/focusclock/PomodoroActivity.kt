@@ -1,6 +1,8 @@
 package com.example.focusclock
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -188,6 +190,7 @@ class PomodoroActivity : AppCompatActivity() {
         val selectedTask = selectedATask.selectedItem.toString()
         val selectedProject = selectedAProject.selectedItem.toString()
 
+
         // Create a new time entry object
         val timeEntry = TimeEntry(
             currentDate,
@@ -268,4 +271,5 @@ class PomodoroActivity : AppCompatActivity() {
         //val progress = (totalTime - secondsRemaining * 1000).toInt()
         //progressBar.progress = progress
     }
+
 }
