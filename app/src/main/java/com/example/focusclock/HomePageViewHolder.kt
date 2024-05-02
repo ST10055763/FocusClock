@@ -12,11 +12,11 @@ class HomePageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val popTimeTracked: TextView = itemView.findViewById(R.id.tvHITimeTracked)
     private val popDuration: TextView = itemView.findViewById(R.id.tvHIDuration)
 
-    fun bind(timeentry: TimeEntryHomeDisplay){
+    fun bind(timeEntry: TimeEntryHomeDisplay){
         // Bind project data to views
-        projName.text = timeentry.entryProject
-        taskName.text = timeentry.selectedTask
-        popTimeTracked.text = "Time Done: ${timeentry.startTime} - ${timeentry.endTime}" // Assuming you want to display projectID here
-        popDuration.text = "Duration (hh:mm): ${timeentry.durationTask}"
+        projName.text = timeEntry.entryProject
+        taskName.text = timeEntry.selectedTask
+        popTimeTracked.text = "Time Done: ${timeEntry.startTime} - ${timeEntry.endTime}" // Assuming you want to display projectID here
+        popDuration.text = "Duration (hh:mm): ${timeEntry.durationTask}"
     }
 }

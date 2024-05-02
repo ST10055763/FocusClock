@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class HomePageActivity : AppCompatActivity() {
+class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListener {
 
     // Define your Firestore instance
     private val db = FirebaseFirestore.getInstance()
@@ -112,6 +112,8 @@ class HomePageActivity : AppCompatActivity() {
         adapter = HomePageAdapter(timeentries)
         timeentriesRecyclerView.adapter = adapter
 
+        adapter.setOnItemClickListener(this)
+
         // Set a layout manager (e.g., LinearLayoutManager)
         timeentriesRecyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -178,6 +180,13 @@ class HomePageActivity : AppCompatActivity() {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         return dateFormat.format(calendar.time)
+    }
+
+    override fun onItemClick(timeEntry: TimeEntryHomeDisplay) {
+        val intent = Intent(this, ViewATimeEntryActivity::class.java)
+        // Pass the TimeEntry object as an extra with the intent
+        intent.putExtra("timeEntry", timeEntry)
+        startActivity(intent)
     }
 
     private fun fetchAndPopulateFireStoreHomeEntries(userID: String?, currentDate: String)

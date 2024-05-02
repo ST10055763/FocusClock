@@ -27,54 +27,34 @@ class ViewATimeEntryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //getting TimeEntry object from intent
+        val timeEntry = intent.getParcelableExtra<TimeEntryHomeDisplay>("timeEntry")
+
+        ProjectName = findViewById(R.id.txtPName)
+        TaskName = findViewById(R.id.txtTName)
+        STime = findViewById(R.id.viewStartTime)
+        ETime = findViewById(R.id.viewEndTime)
+
+
+        if (timeEntry != null) {
+            // Populate EditText fields with the TimeEntry object
+            ProjectName.setText(timeEntry.entryProject)
+            TaskName.setText(timeEntry.selectedTask)
+            STime.setText(timeEntry.startTime)
+            ETime.setText(timeEntry.endTime)
+        } else {
+            // Handle case where timeEntry is null (optional)
+            Toast.makeText(this, "Error: Time entry not found", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
         backBtn = findViewById(R.id.ViewEntryBackfloatingButton)
         backBtn.setOnClickListener{
             var returnLoginIntent = Intent(this, HomePageActivity::class.java)
             startActivity(returnLoginIntent)
             // using finish() to end the activity
             finish()
-        }
-    }
-
-    private fun populateEntryData(uid: String?, db: FirebaseFirestore, pname: String, task: String ) {
-
-        if(uid != null)
-        {
-            val entryRef = db.collection("time_entries")
-            entryRef
-                .whereEqualTo("firebaseUUID", uid)
-                .whereEqualTo("entryProject", pname)
-                .whereEqualTo("selectedTask", task)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    if (documentSnapshot.exists()) {
-                        val userData = documentSnapshot.toObject(TimeEntry::class.java)
-
-                    }
-                }
-        }
-
-        if (uid != null) {
-            val userRef = db.collection("profiles").document(uid)
-            userRef.get()
-                .addOnSuccessListener { documentSnapshot ->
-                    if (documentSnapshot.exists()) {
-                        // Retrieve user data
-                        val userData = documentSnapshot.toObject(Users::class.java)
-                        // Populate data into EditText components
-                        newEmail.setText(userData?.email)
-                        newFullname.setText(userData?.fname)
-                        newPhone.setText(userData?.phoneNum)
-                        newMin.setText(userData?.mingoals)
-                        newMax.setText(userData?.maxgoals)
-                        Username.setText(userData?.fname)
-                    } else {
-                        Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show()
-                }
         }
     }
 
