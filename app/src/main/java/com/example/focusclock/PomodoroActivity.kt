@@ -37,6 +37,13 @@ class PomodoroActivity : AppCompatActivity() {
     val totalTime = 1500000L // 25 minutes in milliseconds
     val totalTime5Min = 300000L // 5 minutes in milliseconds
 
+    //navigation components
+    private lateinit var settingsButton : ImageButton //- R
+    private lateinit var timerButton: ImageButton
+    private lateinit var filterButton: ImageButton
+    private lateinit var homeButton: ImageButton
+    private lateinit var projectButton: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pomodoro)
@@ -47,6 +54,30 @@ class PomodoroActivity : AppCompatActivity() {
         tvTimer5Min = findViewById(R.id.tvTimer5Min)
         selectedAProject = findViewById(R.id.spinProjects)
         selectedATask = findViewById(R.id.spinTasks)
+
+        settingsButton = findViewById(R.id.navbarSettings)
+        settingsButton.setOnClickListener{
+            var KtoEIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(KtoEIntent)
+        }
+
+        filterButton = findViewById(R.id.navbarFilter)
+        filterButton.setOnClickListener{
+            var filterIntent = Intent(this, FilterInformationActivty::class.java)
+            startActivity(filterIntent)
+        }
+
+        homeButton = findViewById(R.id.navbarHome)
+        homeButton.setOnClickListener{
+            var homeIntent = Intent(this, HomePageActivity::class.java)
+            startActivity(homeIntent)
+        }
+
+        projectButton = findViewById(R.id.navbarEntries)
+        projectButton.setOnClickListener{
+            var homeIntent = Intent(this, ViewProjectsActivity::class.java)
+            startActivity(homeIntent)
+        }
 
         timer5Min = object : CountDownTimer(0, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
