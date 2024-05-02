@@ -169,15 +169,17 @@ class FilterInformationActivty : AppCompatActivity() {
                     if (etStartDate.text.isNullOrEmpty() || etEndDate.text.isNullOrEmpty()) {
                         Toast.makeText(this, "Please enter a valid range", Toast.LENGTH_SHORT).show()
                     } else {
-                        val startDate = parseDate(etStartDate.text.toString())
-                        val endDate = parseDate(etEndDate.text.toString())
+                        val startDateText = etStartDate.text.toString()
+                        val endDateText = etEndDate.text.toString()
+
+                        val startDate = parseDate(startDateText)
+                        val endDate = parseDate(endDateText)
 
                         if (startDate != null && endDate != null) {
                             if (endDate.after(startDate)) {
 
-                                val startDate = etStartDate.toString()
-                                val endDate = etEndDate.text.toString()
-                                fetchAndPopulateFireStoreDateEntries(userId, startDate, endDate)
+                                // Pass the correct string dates to the function
+                                fetchAndPopulateFireStoreDateEntries(userId, startDateText, endDateText)
                             } else {
                                 Toast.makeText(this, "End date must be after start date", Toast.LENGTH_SHORT).show()
                             }
@@ -191,16 +193,18 @@ class FilterInformationActivty : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     private fun parseDate(dateString: String): Date? {
-        val formatter = SimpleDateFormat("MM/dd/yyyy")
+        val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         return try {
             formatter.parse(dateString)
         } catch (e: ParseException) {
             null
         }
     }
+
 
 
     private fun showDatePickerDialogStart() {
@@ -231,57 +235,57 @@ class FilterInformationActivty : AppCompatActivity() {
         datePickerDialog.show()
     }
 
-    private fun fetchAndPopulateFireStoreDateEntries(userID:String?, startDate:String, endDate:String)
-    {
+    private fun fetchAndPopulateFireStoreDateEntries(userID: String?, startDate: String, endDate: String) {
         val entriesref = db.collection("time_entries")
 
-        entriesref
-            .whereEqualTo("firebaseUUID", userID)
-            .whereGreaterThanOrEqualTo("currentDate", startDate)
-            .whereLessThanOrEqualTo("currentDate", endDate)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                for (document in querySnapshot.documents) {
+        val dateFormatter = SimpleDateFormat("MM/dd/yyyy")
+        val startDateTimestamp = dateFormatter.parse(startDate)?.time
+        val endDateTimestamp = dateFormatter.parse(endDate)?.time
 
-                    val firebaseUUID = document.getString("firebaseUUID") ?: ""
-                    val startTimeString = document.getString("startTime") ?: ""
-                    val endTimeString = document.getString("endTime") ?: ""
-                    val selectedTask = document.getString("selectedTask") ?: ""
-                    val entryProject = document.getString("entryProject") ?: ""
-                    val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
-                    val dateentry = document.getString("currentDate") ?: ""
+        if (startDateTimestamp != null && endDateTimestamp != null) {
+            entriesref
+                .whereEqualTo("firebaseUUID", userID)
+                .whereGreaterThanOrEqualTo("currentDate", startDate)
+                .whereLessThanOrEqualTo("currentDate", endDate)
+                .get()
+                .addOnSuccessListener { querySnapshot ->
+                    for (document in querySnapshot.documents) {
+                        val firebaseUUID = document.getString("firebaseUUID") ?: ""
+                        val startTimeString = document.getString("startTime") ?: ""
+                        val endTimeString = document.getString("endTime") ?: ""
+                        val selectedTask = document.getString("selectedTask") ?: ""
+                        val entryProject = document.getString("entryProject") ?: ""
+                        val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
+                        val dateentry = document.getString("currentDate") ?: ""
 
-                    val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, "")
+                        val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, "")
 
-                    // Convert start time and end time to Date objects
-                    val dummyDate = "1970-01-01 "
-                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + startTimeString)
-                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + endTimeString)
+                        // Convert start time and end time to Date objects
+                        val dummyDate = "1970-01-01 "
+                        val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + startTimeString)
+                        val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + endTimeString)
 
-                    // Calculate the duration between start time and end time in milliseconds
-                    val durationMillis = endTime.time - startTime.time
+                        // Calculate the duration between start time and end time in milliseconds
+                        val durationMillis = endTime.time - startTime.time
 
-                    // Convert duration from milliseconds to hours
-                    // val hours = durationMillis.toDouble() / (1000 * 60 * 60)
+                        // Convert duration from milliseconds to hours, minutes, and seconds
+                        val hours = durationMillis / (1000 * 60 * 60)
+                        val minutes = (durationMillis % (1000 * 60 * 60)) / (1000 * 60)
+                        val seconds = ((durationMillis % (1000 * 60 * 60)) % (1000 * 60)) / 1000
 
-                    //currentEntry.durationTask = hours
+                        // Format the duration as hh:mm:ss
+                        val formattedDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds)
 
-                    // Convert duration from milliseconds to hours, minutes, and seconds
-                    val hours = durationMillis / (1000 * 60 * 60)
-                    val minutes = (durationMillis % (1000 * 60 * 60)) / (1000 * 60)
-                    val seconds = ((durationMillis % (1000 * 60 * 60)) % (1000 * 60)) / 1000
+                        currentEntry.durationTask = formattedDuration
 
-                    // Format the duration as hh:mm:ss
-                    val formattedDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds)
-
-                    currentEntry.durationTask = formattedDuration
-
-                    timeentries.add(currentEntry)
+                        timeentries.add(currentEntry)
+                    }
+                    // After fetching data, notify the adapter of the change
+                    recadapter.notifyDataSetChanged()
                 }
-                // After fetching data, notify the adapter of the change
-                recadapter.notifyDataSetChanged()
-            }
+        }
     }
+
 
     private fun fetchAndPopulateFireStoreProjects(userID: String?) {
         val db = FirebaseFirestore.getInstance()
