@@ -25,6 +25,9 @@ class ViewProjectsActivity : AppCompatActivity() {
     private lateinit var projectButton: ImageButton
     private lateinit var addTimeEntryButton: FloatingActionButton
 
+//    private var totalTasks: Int = 0
+//    private var totalHours: Double = 0.0 // Assuming you want to store hours as a double
+
     private lateinit var projectsRecyclerView: RecyclerView
     private val projects = mutableListOf<ProjectDisplay>()
     private lateinit var adapter: ViewProjectAdapter
@@ -113,7 +116,10 @@ class ViewProjectsActivity : AppCompatActivity() {
                     val project = ProjectDisplay(projectID, firebaseUUID, pname, ddate, ghrs, 0, 0.0)
                     projects.add(project)
 
-                    fetchTotalTasksAndHours(userID, project)
+                    fetchSpecificProjectEntries(userID, project)
+                    //fetchTotalTasksAndHours(userID, project)
+//                    totalTasks = 0
+//                    totalHours = 0.0
                 }
                 // After fetching data, notify the adapter of the change
                 adapter.notifyDataSetChanged()
@@ -122,19 +128,58 @@ class ViewProjectsActivity : AppCompatActivity() {
 
     }
 
-    private fun fetchTotalTasksAndHours(userID: String?, project: ProjectDisplay) {
-        var totalTasks: Int = 0
-        var totalHours: Double = 0.0 // Assuming you want to store hours as a double
+//    private fun fetchTotalTasksAndHours(userID: String?, project: ProjectDisplay) {
+//
+//        val db = FirebaseFirestore.getInstance()
+//        val entriesref = db.collection("time_entries")
+//        entriesref
+//            .whereEqualTo("firebaseUUID", userID)
+//            .whereEqualTo("entryProject", project.pname)
+//            .get()
+//            .addOnSuccessListener { querySnapshot ->
+//                for (document in querySnapshot.documents) {
+//                    totalTasks += 1
+//                    val startTimeString = document.getString("startTime") ?: ""
+//                    val endTimeString = document.getString("endTime") ?: ""
+//
+//                    // Convert start time and end time to Date objects
+//                    val dummyDate = "1970-01-01 "
+//                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + startTimeString)
+//                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + endTimeString)
+//
+//                    // Calculate the duration between start time and end time in milliseconds
+//                    val durationMillis = endTime.time - startTime.time
+//
+//                    // Convert duration from milliseconds to hours
+//                    val hours = durationMillis.toDouble() / (1000 * 60 * 60)
+//
+//                    // Update total hours
+//                    totalHours += hours
+//                }
+//
+//                // Update the project object with total tasks and total hours
+//                project.totTasks = totalTasks
+//                project.hoursDone = totalHours
+//            }
+//        // After fetching data, notify the adapter of the change
+//        adapter.notifyDataSetChanged()
+//    }
 
+    private fun fetchSpecificProjectEntries(userID: String?, project: ProjectDisplay) {
         val db = FirebaseFirestore.getInstance()
-        val entriesref = db.collection("timeentry")
+        val entriesref = db.collection("time_entries")
         entriesref
             .whereEqualTo("firebaseUUID", userID)
-            .whereEqualTo("entryproject", project.pname)
+            .whereEqualTo("entryProject", project.pname)
             .get()
             .addOnSuccessListener { querySnapshot ->
+                var totalTasks = 0
+                var totalHours = 0.0
+
                 for (document in querySnapshot.documents) {
-                    totalTasks += 1
+                    // Increment total tasks for the project
+                    totalTasks++
+
                     val startTimeString = document.getString("startTime") ?: ""
                     val endTimeString = document.getString("endTime") ?: ""
 
@@ -146,18 +191,21 @@ class ViewProjectsActivity : AppCompatActivity() {
                     // Calculate the duration between start time and end time in milliseconds
                     val durationMillis = endTime.time - startTime.time
 
-                    // Convert duration from milliseconds to hours
-                    val hours = durationMillis.toDouble() / (1000 * 60 * 60)
-
-                    // Update total hours
-                    totalHours += hours
+                    // Convert duration from milliseconds to hours and add to total hours for the project
+                    // val hours = String.format("%.3f", durationMillis.toDouble() / (1000 * 60 * 60)).toDouble()
+                    // totalHours += hours
+                    totalHours += durationMillis.toDouble() / (1000 * 60 * 60)
                 }
 
-                // Update the project object with total tasks and total hours
+                // Update the project's total hours and tasks done
                 project.totTasks = totalTasks
                 project.hoursDone = totalHours
+
+                // Notify the adapter of the change
+                adapter.notifyDataSetChanged()
             }
     }
+
 
 
 

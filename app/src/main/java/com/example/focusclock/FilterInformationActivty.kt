@@ -231,12 +231,12 @@ class FilterInformationActivty : AppCompatActivity() {
 
     private fun fetchAndPopulateFireStoreDateEntries(userID:String?, startDate:String, endDate:String)
     {
-        val entriesref = db.collection("timeentry")
+        val entriesref = db.collection("time_entries")
 
         entriesref
             .whereEqualTo("firebaseUUID", userID)
-            .whereGreaterThanOrEqualTo("dateentry", startDate)
-            .whereLessThanOrEqualTo("dateentry", endDate)
+            .whereGreaterThanOrEqualTo("currentDate", startDate)
+            .whereLessThanOrEqualTo("currentDate", endDate)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 for (document in querySnapshot.documents) {
@@ -247,7 +247,7 @@ class FilterInformationActivty : AppCompatActivity() {
                     val selectedTask = document.getString("selectedTask") ?: ""
                     val entryProject = document.getString("entryProject") ?: ""
                     val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
-                    val dateentry = document.getString("dateentry") ?: ""
+                    val dateentry = document.getString("currentDate") ?: ""
 
                     val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
 
@@ -300,10 +300,10 @@ class FilterInformationActivty : AppCompatActivity() {
         var totalHours: Double = 0.0 // Assuming you want to store hours as a double
 
         val db = FirebaseFirestore.getInstance()
-        val entriesref = db.collection("timeentry")
+        val entriesref = db.collection("time_entries")
         entriesref
             .whereEqualTo("firebaseUUID", userID)
-            .whereEqualTo("entryproject", project.pname)
+            .whereEqualTo("entryProject", project.pname)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 for (document in querySnapshot.documents) {
@@ -314,7 +314,7 @@ class FilterInformationActivty : AppCompatActivity() {
                     val selectedTask = document.getString("selectedTask") ?: ""
                     val entryProject = document.getString("entryProject") ?: ""
                     val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
-                    val dateentry = document.getString("dateentry") ?: ""
+                    val dateentry = document.getString("currentDate") ?: ""
 
                     val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
 
