@@ -17,6 +17,6 @@ class HomePageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         projName.text = timeEntry.entryProject
         taskName.text = timeEntry.selectedTask
         popTimeTracked.text = "Time Done: ${timeEntry.startTime} - ${timeEntry.endTime}" // Assuming you want to display projectID here
-        popDuration.text = "Duration (hh:mm): ${timeEntry.durationTask}"
+        popDuration.text = "Duration (hh): ${timeEntry.durationTask}"
     }
 }

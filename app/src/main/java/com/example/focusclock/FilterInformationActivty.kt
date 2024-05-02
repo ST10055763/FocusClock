@@ -236,19 +236,23 @@ class FilterInformationActivty : AppCompatActivity() {
     }
 
     private fun fetchAndPopulateFireStoreDateEntries(userID: String?, startDate: String, endDate: String) {
-        val entriesref = db.collection("time_entries")
+        val entriesRef = db.collection("time_entries")
 
-        val dateFormatter = SimpleDateFormat("MM/dd/yyyy")
-        val startDateTimestamp = dateFormatter.parse(startDate)?.time
-        val endDateTimestamp = dateFormatter.parse(endDate)?.time
+        val dateFormatter = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+        val startDateDate = dateFormatter.parse(startDate)
+        val endDateDate = dateFormatter.parse(endDate)
 
-        if (startDateTimestamp != null && endDateTimestamp != null) {
-            entriesref
+        if (startDateDate != null && endDateDate != null) {
+            val startDateTimestamp = com.google.firebase.Timestamp(startDateDate)
+            val endDateTimestamp = com.google.firebase.Timestamp(endDateDate)
+
+            entriesRef
                 .whereEqualTo("firebaseUUID", userID)
-                .whereGreaterThanOrEqualTo("currentDate", startDate)
-                .whereLessThanOrEqualTo("currentDate", endDate)
+                .whereGreaterThanOrEqualTo("currentDate", startDateTimestamp)
+                .whereLessThanOrEqualTo("currentDate", endDateTimestamp)
                 .get()
                 .addOnSuccessListener { querySnapshot ->
+                    val timeentries = mutableListOf<TimeEntryFilterDisplay>() // Create a new list to avoid duplicates
                     for (document in querySnapshot.documents) {
                         val firebaseUUID = document.getString("firebaseUUID") ?: ""
                         val startTimeString = document.getString("startTime") ?: ""
@@ -280,11 +284,12 @@ class FilterInformationActivty : AppCompatActivity() {
 
                         timeentries.add(currentEntry)
                     }
-                    // After fetching data, notify the adapter of the change
+                    // After fetching data, update the RecyclerView adapter with the new data
                     recadapter.notifyDataSetChanged()
                 }
         }
     }
+
 
 
     private fun fetchAndPopulateFireStoreProjects(userID: String?) {
