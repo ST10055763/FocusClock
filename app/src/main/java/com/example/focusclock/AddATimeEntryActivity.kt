@@ -31,6 +31,8 @@ import com.google.firebase.storage.storage
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 import java.util.UUID
@@ -189,11 +191,16 @@ lateinit var timeEntryEndTime : EditText
         timeEntryTask.adapter = adapter
 
     }
-    fun getCurrentDate(): String
-    {
-        val calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        return dateFormat.format(calendar.time)
+    //fun getCurrentDate(): String
+   // {
+     //   val calendar = Calendar.getInstance()
+       // val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        //return dateFormat.format(calendar.time)
+    //}
+    fun getCurrentDate(): String {
+        val currentDate = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        return formatter.format(currentDate)
     }
     fun fetchFireStoreProjects(userId: String?)
     {
