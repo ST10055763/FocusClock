@@ -260,7 +260,12 @@ class PomodoroActivity : AppCompatActivity() {
     }
 
     private fun updateProgressBar(progressBar: ProgressBar, totalTime: Long, secondsRemaining: Long) {
-        val progress = (totalTime - secondsRemaining * 1000).toInt()
+
+        val elapsedTime = totalTime - secondsRemaining * 1000
+        val progress = ((elapsedTime.toFloat() / totalTime) * 100).toInt()
         progressBar.progress = progress
+
+        //val progress = (totalTime - secondsRemaining * 1000).toInt()
+        //progressBar.progress = progress
     }
 }
