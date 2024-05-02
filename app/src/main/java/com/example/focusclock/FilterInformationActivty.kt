@@ -175,7 +175,9 @@ class FilterInformationActivty : AppCompatActivity() {
                         if (startDate != null && endDate != null) {
                             if (endDate.after(startDate)) {
 
-                                fetchAndPopulateFireStoreDateEntries(userId, etStartDate.toString(), etEndDate.toString())
+                                val startDate = etStartDate.toString()
+                                val endDate = etEndDate.text.toString()
+                                fetchAndPopulateFireStoreDateEntries(userId, startDate, endDate)
                             } else {
                                 Toast.makeText(this, "End date must be after start date", Toast.LENGTH_SHORT).show()
                             }
@@ -249,7 +251,7 @@ class FilterInformationActivty : AppCompatActivity() {
                     val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
                     val dateentry = document.getString("currentDate") ?: ""
 
-                    val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
+                    val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, "")
 
                     // Convert start time and end time to Date objects
                     val dummyDate = "1970-01-01 "
@@ -260,9 +262,19 @@ class FilterInformationActivty : AppCompatActivity() {
                     val durationMillis = endTime.time - startTime.time
 
                     // Convert duration from milliseconds to hours
-                    val hours = durationMillis.toDouble() / (1000 * 60 * 60)
+                    // val hours = durationMillis.toDouble() / (1000 * 60 * 60)
 
-                    currentEntry.durationTask = hours
+                    //currentEntry.durationTask = hours
+
+                    // Convert duration from milliseconds to hours, minutes, and seconds
+                    val hours = durationMillis / (1000 * 60 * 60)
+                    val minutes = (durationMillis % (1000 * 60 * 60)) / (1000 * 60)
+                    val seconds = ((durationMillis % (1000 * 60 * 60)) % (1000 * 60)) / 1000
+
+                    // Format the duration as hh:mm:ss
+                    val formattedDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+
+                    currentEntry.durationTask = formattedDuration
 
                     timeentries.add(currentEntry)
                 }
@@ -316,7 +328,7 @@ class FilterInformationActivty : AppCompatActivity() {
                     val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
                     val dateentry = document.getString("currentDate") ?: ""
 
-                    val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
+                    val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, "")
 
                     // Convert start time and end time to Date objects
                     val dummyDate = "1970-01-01 "
@@ -327,9 +339,19 @@ class FilterInformationActivty : AppCompatActivity() {
                     val durationMillis = endTime.time - startTime.time
 
                     // Convert duration from milliseconds to hours
-                    val hours = durationMillis.toDouble() / (1000 * 60 * 60)
+                    //val hours = durationMillis.toDouble() / (1000 * 60 * 60)
 
-                    currentEntry.durationTask = hours
+                    //currentEntry.durationTask = hours
+
+                    // Convert duration from milliseconds to hours, minutes, and seconds
+                    val hours = durationMillis / (1000 * 60 * 60)
+                    val minutes = (durationMillis % (1000 * 60 * 60)) / (1000 * 60)
+                    val seconds = ((durationMillis % (1000 * 60 * 60)) % (1000 * 60)) / 1000
+
+                    // Format the duration as hh:mm:ss
+                    val formattedDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+
+                    currentEntry.durationTask = formattedDuration
 
                     timeentries.add(currentEntry)
                 }

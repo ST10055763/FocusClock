@@ -16,6 +16,6 @@ class FilterInformationViewHolder(itemView: View) : RecyclerView.ViewHolder(item
         projName.text = timeentry.entryProject
         taskName.text = timeentry.selectedTask
         popDate.text = "Date Entry: ${timeentry.dateentry}"
-        popDuration.text = "Duration (hh:mm): ${timeentry.durationTask}"
+        popDuration.text = "Duration (hh:mm:ss): ${timeentry.durationTask}"
     }
 }

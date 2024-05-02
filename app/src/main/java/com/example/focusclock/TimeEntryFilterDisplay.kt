@@ -11,5 +11,5 @@ data class TimeEntryFilterDisplay (
     // NEED TO ADD
     val dateentry: String,
     // extra for display
-    var durationTask: Double?
+    var durationTask:String?
 )
