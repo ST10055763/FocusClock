@@ -123,6 +123,7 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
 
         // fetch data here
         fetchAndPopulateFireStoreHomeEntries(firebaseUUID, currentDate)
+        //hoursToday = String.format("%.3f", hoursToday).toDouble()
 
         tvDateHeader = findViewById(R.id.tvHomePageDateHeader)
         tvDateHeader.setText("Here's Todays Schedule " + currentDate)
@@ -145,7 +146,7 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
                         if (fname != null) {
                             // fname is not null, you can use it
                             tvUserHeader.setText("Hello, " + fname)
-                            tvHomeHours.setText("${hoursToday} / ${minHours} Done Today")
+                            tvHomeHours.setText("${hoursToday} / ${minHours} Hours Done Today")
                             tvHomeTasksDone.setText("${tasksDone} Tasks Completed Today")
 
                         } else {
@@ -168,10 +169,10 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
         btnMaxGoals = findViewById(R.id.btnHomeMaxGoal)
 
         btnMinGoals.setOnClickListener{
-            tvHomeHours.setText("${hoursToday} / ${minHours} Done Today")
+            tvHomeHours.setText("${hoursToday} / ${minHours} Hours Done Today")
         }
         btnMaxGoals.setOnClickListener{
-            tvHomeHours.setText("${hoursToday} / ${maxHours} Done Today")
+            tvHomeHours.setText("${hoursToday} / ${maxHours} Hours Done Today")
         }
 
     }
@@ -223,7 +224,11 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
 
                     // Update total hours
                     hoursToday += hours
-                    currentEntry.durationTask = hours
+                    //currentEntry.durationTask = hours
+                    currentEntry.durationTask = String.format("%.3f", hours).toDouble()
+
+                    // Format hoursToday here
+                    hoursToday = String.format("%.3f", hoursToday).toDouble()
 
                     timeentries.add(currentEntry)
                 }

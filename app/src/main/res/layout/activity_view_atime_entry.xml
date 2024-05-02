@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941"
+        app:layout_constraintVertical_bias="0.949"
         tools:srcCompat="@color/fcBlue" />
 
     <ImageButton
@@ -28,10 +28,10 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938"
+        app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@drawable/timer" />
 
     <ImageButton
@@ -58,10 +58,9 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939"
+        app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@drawable/home" />
 
     <ImageButton
@@ -73,10 +72,10 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.719"
+        app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932"
+        app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@drawable/clipboard" />
 
     <ImageButton
@@ -88,33 +87,37 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932"
+        app:layout_constraintVertical_bias="0.941"
         app:srcCompat="@drawable/settings" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="304dp"
-        android:layout_height="456dp"
-        android:layout_marginStart="-10dp"
-        android:layout_marginBottom="-5dp"
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryBackfloatingButton"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
+        android:layout_width="302dp"
+        android:layout_height="470dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31"
         tools:srcCompat="@color/backgroundGrey" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="264dp"
         android:layout_height="44dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="50dp"
         android:text="View An Entry"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView8"
@@ -122,129 +125,161 @@
         android:layout_height="19dp"
         android:text="View a Specific Time Entry"
         android:textColor="#444749"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.061" />
 
     <EditText
         android:id="@+id/txtPName"
         android:layout_width="284dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Project name"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/tvVPNonCatInsertTot"
-        app:layout_constraintStart_toStartOf="@+id/tvVPNonCatInsertTot" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.181" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:text="Project Name:"
-        app:layout_constraintBottom_toTopOf="@+id/txtPName"
-        app:layout_constraintStart_toStartOf="@+id/txtPName" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
 
     <EditText
         android:id="@+id/txtTName"
         android:layout_width="284dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Task Name"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/tvHomeHoursDone"
-        app:layout_constraintStart_toStartOf="@+id/tvHomeHoursDone" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31" />
 
     <TextView
         android:id="@+id/tvHomeHoursDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:text="Start Time"
-        app:layout_constraintBottom_toTopOf="@+id/viewStartTime"
-        app:layout_constraintStart_toStartOf="@+id/viewStartTime" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.375" />
 
     <EditText
         android:id="@+id/viewStartTime"
         android:layout_width="284dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Start Time"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintStart_toStartOf="@+id/textView10" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.431" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:text="End Time: "
-        app:layout_constraintBottom_toTopOf="@+id/viewEndTime"
-        app:layout_constraintStart_toStartOf="@+id/viewEndTime" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/viewEndTime"
         android:layout_width="284dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="40dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="End Time"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryimageButton"
-        app:layout_constraintStart_toStartOf="@+id/tvHomeTasksComplete" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
 
     <TextView
         android:id="@+id/tvHomeTasksComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:text="Picture (Optional)"
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryimageButton"
-        app:layout_constraintEnd_toStartOf="@+id/ViewEntryimageButton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617" />
 
     <TextView
         android:id="@+id/tvVPNonCatInsertTot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="207dp"
-        android:layout_marginBottom="10dp"
         android:text="Task Name: "
-        app:layout_constraintBottom_toTopOf="@+id/txtTName"
-        app:layout_constraintEnd_toEndOf="@+id/txtTName" />
-
-    <ImageButton
-        android:id="@+id/ViewEntryimageButton"
-        android:layout_width="65dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="Add picture"
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryBackfloatingButton"
-        app:layout_constraintStart_toStartOf="@+id/ViewEntryBackfloatingButton"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.257" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ViewEntryBackfloatingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="12dp"
         android:background="@color/fcOrange"
         android:backgroundTint="@color/fcOrange"
         android:clickable="true"
         android:contentDescription="back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.832"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageView
+        android:id="@+id/ImageViewComp"
+        android:layout_width="129dp"
+        android:layout_height="101dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.696"
+        app:srcCompat="@mipmap/fc_launcher" />
 </androidx.constraintlayout.widget.ConstraintLayout>
