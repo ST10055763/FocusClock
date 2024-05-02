@@ -192,9 +192,9 @@ class ViewProjectsActivity : AppCompatActivity() {
                     val durationMillis = endTime.time - startTime.time
 
                     // Convert duration from milliseconds to hours and add to total hours for the project
-                    // val hours = String.format("%.3f", durationMillis.toDouble() / (1000 * 60 * 60)).toDouble()
-                    // totalHours += hours
-                    totalHours += durationMillis.toDouble() / (1000 * 60 * 60)
+                    val hours = String.format("%.3f", durationMillis.toDouble() / (1000 * 60 * 60)).toDouble()
+                    totalHours += hours
+                    //totalHours += durationMillis.toDouble() / (1000 * 60 * 60)
                 }
 
                 // Update the project's total hours and tasks done
