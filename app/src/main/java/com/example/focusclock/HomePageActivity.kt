@@ -182,10 +182,10 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun fetchAndPopulateFireStoreHomeEntries(userID: String?, currentDate: String)
     {
-        val entriesref = db.collection("timeentry")
+        val entriesref = db.collection("time_entries")
         entriesref
             .whereEqualTo("firebaseUUID", userID)
-            .whereEqualTo("dateentry", currentDate)
+            .whereEqualTo("currentDate", currentDate)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 for (document in querySnapshot.documents) {
@@ -197,7 +197,7 @@ class HomePageActivity : AppCompatActivity() {
                     val selectedTask = document.getString("selectedTask") ?: ""
                     val entryProject = document.getString("entryProject") ?: ""
                     val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
-                    val dateentry = document.getString("dateentry") ?: ""
+                    val dateentry = document.getString("currentDate") ?: ""
 
                     val currentEntry = TimeEntryHomeDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
 
@@ -218,6 +218,10 @@ class HomePageActivity : AppCompatActivity() {
 
                     timeentries.add(currentEntry)
                 }
+
+                // Update UI after processing all documents
+                tvHomeHours.setText("${hoursToday} / x Done Today")
+                tvHomeTasksDone.setText("${tasksDone} Tasks Completed Today")
                 // After fetching data, notify the adapter of the change
                 adapter.notifyDataSetChanged()
             }
