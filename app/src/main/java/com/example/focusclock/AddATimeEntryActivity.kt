@@ -139,9 +139,19 @@ lateinit var timeEntryEndTime : EditText
             if (userId != null) {
                var startTime = timeEntryStartTime.text.toString()
                 var endTime = timeEntryEndTime.text.toString()
+                if (userId != null) {
+                    if (imageUri != Uri.EMPTY) {
+                        uploadImageToFirebaseStorage { imageUrl ->
+                            createTimeEntry(startTime, endTime, imageUrl)
+                        }
+                    } else {
+                        createTimeEntry(startTime, endTime, "")
+                    }
+                }
+
               //  if (imageUriFStorage.isNotEmpty()) {
                     //uploadImageToFirebaseStorage()
-                        createTimeEntry(startTime, endTime)// Call the function to upload image first
+                        //createTimeEntry(startTime, endTime)// Call the function to upload image first
                // } else {
 
                 //}
@@ -197,9 +207,16 @@ lateinit var timeEntryEndTime : EditText
        // val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         //return dateFormat.format(calendar.time)
     //}
+    //fun getCurrentDate(): String {
+        //val currentDate = LocalDateTime.now()
+       // val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+     //   return formatter.format(currentDate)
+   // }
     fun getCurrentDate(): String {
+//works first time, loads picture and saves task
+        //need to test for second adding
         val currentDate = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        val formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy")
         return formatter.format(currentDate)
     }
     fun fetchFireStoreProjects(userId: String?)
@@ -307,7 +324,7 @@ lateinit var timeEntryEndTime : EditText
         }
     }
 
-    private fun uploadImageToFirebaseStorage() {
+    private fun uploadImageToFirebaseStorage(callback: (String) -> Unit) {
         // Get a reference to where the image will be stored in Firebase Storage
         val imageRef = storageRef.child("timeentryimages/${UUID.randomUUID()}")
 
@@ -316,8 +333,9 @@ lateinit var timeEntryEndTime : EditText
         uploadTask.addOnSuccessListener { taskSnapshot ->
             // Image uploaded successfully, now get the download URL
             imageRef.downloadUrl.addOnSuccessListener { uri ->
-                //val imageUrl = uri.toString()
+                val imageUrl = uri.toString()
                 imageUriFStorage = uri.toString()
+                callback(imageUrl)
 
                 // Store image URL in Firestore
                 // storeImageUrlInFirestore(imageUrl)
@@ -328,8 +346,7 @@ lateinit var timeEntryEndTime : EditText
         }
     }
 
-    fun createTimeEntry(startTime : String, endTime : String)
-    {
+    fun createTimeEntry(startTime : String, endTime : String, imageUrl: String) {
 
 
         val entryProject = proj[timeEntryProject.selectedItemPosition]//correct
@@ -340,15 +357,53 @@ lateinit var timeEntryEndTime : EditText
         val currentDate = getCurrentDate()
         //val currentDate = getCurrentDate().text
         val hasImage = imageUri != Uri.EMPTY
-        if (hasImage)
-        {
-            uploadImageToFirebaseStorage()
-        }
-        else
-        {
-            imageUriFStorage = "null"
+        if (hasImage) {
+            //uploadImageToFirebaseStorage()
+            uploadImageToFirebaseStorage { imageUri ->
+                val timeEntry = TimeEntry(
+                    currentDate,
+                    userId,
+                    startTime,
+                    endTime,
+                    selectedTask,
+                    entryProject,
+                    imageUri
+                )
+                db.collection("time_entries")
+                    .add(timeEntry)
+                    .addOnSuccessListener { documentReference ->
+                        Toast.makeText(this, "Time Entry Added Successfully", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+            }
+        } else {
+            // If no image is selected, set imageUriFStorage to an empty string
+            val imageUrl = ""
+            val timeEntry = TimeEntry(
+                currentDate,
+                userId,
+                startTime,
+                endTime,
+                selectedTask,
+                entryProject,
+                imageUrl
+            )
+            // Add the TimeEntry object to Firestore
+            db.collection("time_entries")
+                .add(timeEntry)
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(this, "Time Entry Added Successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(
+                        this,
+                        "Failed to add Time Entry: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
         }
+    }
 
         //if(startTime.isEmpty() || endTime.isEmpty())
         //{
@@ -368,17 +423,7 @@ lateinit var timeEntryEndTime : EditText
 
 
         //create Time entry object
-        val timeEntry = TimeEntry(
-            currentDate,//is correct
-            userId,//is correct
-            startTime, // pulling correct
-            endTime,
-            selectedTask,//pulling project
-            entryProject,//pulling end time
-            //pulling task
-            imageUriFStorage//pulling correct
 
-        )
        // val timeEntry = TimeEntry(
         //    firebaseUUID = userId,
           //  startTime = startTime,
@@ -389,14 +434,7 @@ lateinit var timeEntryEndTime : EditText
             //currentDate = getCurrentDate()
         //)
         // Add the time entry to Firestore
-        db.collection("time_entries")
-            .add(timeEntry)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Time Entry Added Successfully", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Time Entry was not added ", Toast.LENGTH_SHORT).show()
-            }
+
        // TimeEntrydb.collection("timeentry")
          //   .add(timeEntry)
            // .addOnSuccessListener { documentReference ->
@@ -404,7 +442,7 @@ lateinit var timeEntryEndTime : EditText
 
             //}
 
-    }
+
 
     private fun showTimePickerDialog(isStartTime : Boolean) {
         val calendar = Calendar.getInstance()
