@@ -126,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/ViewEntryProjectNametxt"
+        android:id="@+id/txtPName"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:layout_marginBottom="10dp"
@@ -144,11 +144,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:text="Project Name:"
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryProjectNametxt"
-        app:layout_constraintStart_toStartOf="@+id/ViewEntryProjectNametxt" />
+        app:layout_constraintBottom_toTopOf="@+id/txtPName"
+        app:layout_constraintStart_toStartOf="@+id/txtPName" />
 
     <EditText
-        android:id="@+id/ViewEntryTaskNametxt"
+        android:id="@+id/txtTName"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:layout_marginBottom="10dp"
@@ -166,11 +166,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="Start Time"
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryStartTimetxt"
-        app:layout_constraintStart_toStartOf="@+id/ViewEntryStartTimetxt" />
+        app:layout_constraintBottom_toTopOf="@+id/viewStartTime"
+        app:layout_constraintStart_toStartOf="@+id/viewStartTime" />
 
     <EditText
-        android:id="@+id/ViewEntryStartTimetxt"
+        android:id="@+id/viewStartTime"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:layout_marginBottom="10dp"
@@ -188,11 +188,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="End Time: "
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryEndTimetxt"
-        app:layout_constraintStart_toStartOf="@+id/ViewEntryEndTimetxt" />
+        app:layout_constraintBottom_toTopOf="@+id/viewEndTime"
+        app:layout_constraintStart_toStartOf="@+id/viewEndTime" />
 
     <EditText
-        android:id="@+id/ViewEntryEndTimetxt"
+        android:id="@+id/viewEndTime"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:layout_marginBottom="40dp"
@@ -220,8 +220,8 @@
         android:layout_marginEnd="207dp"
         android:layout_marginBottom="10dp"
         android:text="Task Name: "
-        app:layout_constraintBottom_toTopOf="@+id/ViewEntryTaskNametxt"
-        app:layout_constraintEnd_toEndOf="@+id/ViewEntryTaskNametxt" />
+        app:layout_constraintBottom_toTopOf="@+id/txtTName"
+        app:layout_constraintEnd_toEndOf="@+id/txtTName" />
 
     <ImageButton
         android:id="@+id/ViewEntryimageButton"
