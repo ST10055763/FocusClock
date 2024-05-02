@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -23,6 +24,14 @@ class AddATaskActivity : AppCompatActivity() {
     lateinit var saveTaskBtn: Button
     lateinit var backFromAddTask: FloatingActionButton
     var projects : List<String> = emptyList()
+
+    private lateinit var settingsButton : ImageButton //- R
+    private lateinit var timerButton: ImageButton
+    private lateinit var filterButton: ImageButton
+    private lateinit var homeButton: ImageButton
+    private lateinit var projectButton: ImageButton
+
+
 
     private val Taskdb = FirebaseFirestore.getInstance()
     // db may be redundant, but would rather use in case of confusion leading to loss of data
@@ -46,6 +55,35 @@ class AddATaskActivity : AppCompatActivity() {
 
         val user = Firebase.auth.currentUser
         val userId = user?.uid
+        settingsButton = findViewById(R.id.navbarSettings)
+        settingsButton.setOnClickListener{
+            var KtoEIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(KtoEIntent)
+        }
+
+        timerButton = findViewById(R.id.navbarPomodoro)
+        timerButton.setOnClickListener{
+            var timerIntent = Intent(this, PomodoroActivity::class.java)
+            startActivity(timerIntent)
+        }
+
+        filterButton = findViewById(R.id.navbarFilter)
+        filterButton.setOnClickListener{
+            var filterIntent = Intent(this, FilterInformationActivty::class.java)
+            startActivity(filterIntent)
+        }
+
+        homeButton = findViewById(R.id.navbarHome)
+        homeButton.setOnClickListener{
+            var homeIntent = Intent(this, HomePageActivity::class.java)
+            startActivity(homeIntent)
+        }
+
+        projectButton = findViewById(R.id.navbarEntries)
+        projectButton.setOnClickListener{
+            var homeIntent = Intent(this, ViewProjectsActivity::class.java)
+            startActivity(homeIntent)
+        }
 
         fetchFireStoreProjects(userId)
 
