@@ -139,7 +139,7 @@ lateinit var timeEntryEndTime : EditText
                 var endTime = timeEntryEndTime.text.toString()
               //  if (imageUriFStorage.isNotEmpty()) {
                     //uploadImageToFirebaseStorage()
-                    createTimeEntry(startTime, endTime)// Call the function to upload image first
+                        createTimeEntry(startTime, endTime)// Call the function to upload image first
                // } else {
 
                 //}
