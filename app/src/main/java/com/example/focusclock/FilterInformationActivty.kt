@@ -248,8 +248,8 @@ class FilterInformationActivty : AppCompatActivity() {
 
             entriesRef
                 .whereEqualTo("firebaseUUID", userID)
-                .whereGreaterThanOrEqualTo("currentDate", startDateTimestamp)
-                .whereLessThanOrEqualTo("currentDate", endDateTimestamp)
+                .whereGreaterThanOrEqualTo("currentDate", startDate)
+                .whereLessThanOrEqualTo("currentDate", endDate)
                 .get()
                 .addOnSuccessListener { querySnapshot ->
                     val timeentries = mutableListOf<TimeEntryFilterDisplay>() // Create a new list to avoid duplicates
