@@ -265,19 +265,19 @@ class FilterInformationActivty : AppCompatActivity() {
                         val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, "")
 
                         // Define the date format for parsing
-                        val dateFormatWithTime = SimpleDateFormat("yyyy-MM-dd HH:mm")
-                        val dateFormatWithTimeAndSeconds = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        val dateFormatWithTime = SimpleDateFormat("MM-dd-yyyy HH:mm")
+                        val dateFormatWithTimeAndSeconds = SimpleDateFormat("MM-dd-yyyy HH:mm:ss")
 
                         // Parse start and end times based on their formats
                         val startTime = if (startTimeString.length == 5) {
-                            dateFormatWithTime.parse("2024-01-01 $startTimeString")
+                            dateFormatWithTime.parse("01-01-2024 $startTimeString")
                         } else {
-                            dateFormatWithTimeAndSeconds.parse("2024-01-01 $startTimeString")
+                            dateFormatWithTimeAndSeconds.parse("01-01-2024 $startTimeString")
                         }
                         val endTime = if (endTimeString.length == 5) {
-                            dateFormatWithTime.parse("2024-01-01 $endTimeString")
+                            dateFormatWithTime.parse("01-01-2024 $endTimeString")
                         } else {
-                            dateFormatWithTimeAndSeconds.parse("2024-01-01 $endTimeString")
+                            dateFormatWithTimeAndSeconds.parse("01-01-2024 $endTimeString")
                         }
 
                         // Calculate the duration between start time and end time in milliseconds
@@ -295,8 +295,16 @@ class FilterInformationActivty : AppCompatActivity() {
 
                         timeentries.add(currentEntry)
                     }
+
+                    if (timeentries.isEmpty()) {
+                        Toast.makeText(this, "No tasks found within the selected date range", Toast.LENGTH_SHORT).show()
+                    }
+
                     // After fetching data, update the RecyclerView adapter with the new data
                     recadapter.notifyDataSetChanged()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error fetching tasks: ", Toast.LENGTH_SHORT).show()
                 }
         }
     }
