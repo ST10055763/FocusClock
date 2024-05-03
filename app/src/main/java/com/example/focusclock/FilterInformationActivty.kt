@@ -3,6 +3,7 @@ package com.example.focusclock
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import kotlin.math.log
 
 class FilterInformationActivty : AppCompatActivity() {
 
@@ -294,6 +296,8 @@ class FilterInformationActivty : AppCompatActivity() {
                         currentEntry.durationTask = formattedDuration
 
                         timeentries.add(currentEntry)
+
+                        Log.d("DocumentFields", "FirebaseUUID: $firebaseUUID, StartTime: $startTimeString. EndTime: $endTimeString ")
                     }
 
                     if (timeentries.isEmpty()) {
@@ -306,6 +310,11 @@ class FilterInformationActivty : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Error fetching tasks: ", Toast.LENGTH_SHORT).show()
                 }
+        }
+        else
+        {
+            Toast.makeText(this, "Failed to parse start or end date: ", Toast.LENGTH_SHORT).show()
+            return
         }
     }
 
