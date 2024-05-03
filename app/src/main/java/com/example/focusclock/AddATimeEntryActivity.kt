@@ -361,13 +361,33 @@ lateinit var timeEntryEndTime : EditText
             //uploadImageToFirebaseStorage()
             uploadImageToFirebaseStorage { imageUri ->
                 val timeEntry = TimeEntry(
+                    //old order
+                    //currentDate,
+                    //userId,
+                    //startTime,
+                    //endTime,
+                    //selectedTask,
+                    //entryProject,
+                    //imageUri
+
+                    //new order // didnt work
+                    //userId,
+                    //startTime,
+                    //endTime,
+                    //selectedTask,
+                    //entryProject,
+                    //imageUrl,
+                    //currentDate
+
+                    //from pomo
                     currentDate,
                     userId,
-                    startTime,
-                    endTime,
+                    startTime, // You need to set startTime somewhere before this
+                    endTime, // You need to implement getCurrentTime() function
                     selectedTask,
                     entryProject,
-                    imageUri
+                    imageUrl
+
                 )
                 db.collection("time_entries")
                     .add(timeEntry)
@@ -380,13 +400,34 @@ lateinit var timeEntryEndTime : EditText
             // If no image is selected, set imageUriFStorage to an empty string
             val imageUrl = ""
             val timeEntry = TimeEntry(
+                //old order
+                //currentDate,
+                //userId,
+                //startTime,
+                //endTime,
+                //selectedTask,
+                //entryProject,
+                //imageUri
+
+                //new order // didnt work
+                //userId,
+                //startTime,
+                //endTime,
+                //selectedTask,
+                //entryProject,
+                //imageUrl,
+                //currentDate
+
+                //from pomo
                 currentDate,
                 userId,
-                startTime,
-                endTime,
+                startTime, // You need to set startTime somewhere before this
+                endTime, // You need to implement getCurrentTime() function
                 selectedTask,
                 entryProject,
                 imageUrl
+
+
             )
             // Add the TimeEntry object to Firestore
             db.collection("time_entries")
