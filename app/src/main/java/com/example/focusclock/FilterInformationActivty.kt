@@ -197,7 +197,7 @@ class FilterInformationActivty : AppCompatActivity() {
     }
 
     private fun parseDate(dateString: String): Date? {
-        val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+        val formatter = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
         return try {
             formatter.parse(dateString)
         } catch (e: ParseException) {
@@ -214,7 +214,7 @@ class FilterInformationActivty : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(this, {_, selectedYear, selectedMonth, selectedDay ->
-            val selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", selectedMonth + 1, selectedDay, selectedYear)
+            val selectedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", selectedMonth + 1, selectedDay, selectedYear)
             etStartDate.setText(selectedDate)
         }, year, month, day)
 
@@ -228,7 +228,7 @@ class FilterInformationActivty : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(this, {_, selectedYear, selectedMonth, selectedDay ->
-            val selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", selectedMonth + 1, selectedDay, selectedYear)
+            val selectedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", selectedMonth + 1, selectedDay, selectedYear)
             etEndDate.setText(selectedDate)
         }, year, month, day)
 
@@ -238,7 +238,7 @@ class FilterInformationActivty : AppCompatActivity() {
     private fun fetchAndPopulateFireStoreDateEntries(userID: String?, startDate: String, endDate: String) {
         val entriesRef = db.collection("time_entries")
 
-        val dateFormatter = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+        val dateFormatter = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
         val startDateDate = dateFormatter.parse(startDate)
         val endDateDate = dateFormatter.parse(endDate)
 
@@ -264,10 +264,21 @@ class FilterInformationActivty : AppCompatActivity() {
 
                         val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, "")
 
-                        // Convert start time and end time to Date objects
-                        val dummyDate = "1970-01-01 "
-                        val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + startTimeString)
-                        val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + endTimeString)
+                        // Define the date format for parsing
+                        val dateFormatWithTime = SimpleDateFormat("yyyy-MM-dd HH:mm")
+                        val dateFormatWithTimeAndSeconds = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+                        // Parse start and end times based on their formats
+                        val startTime = if (startTimeString.length == 5) {
+                            dateFormatWithTime.parse("2024-01-01 $startTimeString")
+                        } else {
+                            dateFormatWithTimeAndSeconds.parse("2024-01-01 $startTimeString")
+                        }
+                        val endTime = if (endTimeString.length == 5) {
+                            dateFormatWithTime.parse("2024-01-01 $endTimeString")
+                        } else {
+                            dateFormatWithTimeAndSeconds.parse("2024-01-01 $endTimeString")
+                        }
 
                         // Calculate the duration between start time and end time in milliseconds
                         val durationMillis = endTime.time - startTime.time
@@ -340,9 +351,21 @@ class FilterInformationActivty : AppCompatActivity() {
                     val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, "")
 
                     // Convert start time and end time to Date objects
-                    val dummyDate = "1970-01-01 "
-                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + startTimeString)
-                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dummyDate + endTimeString)
+                    // Define the date format for parsing
+                    val dateFormatWithTime = SimpleDateFormat("yyyy-MM-dd HH:mm")
+                    val dateFormatWithTimeAndSeconds = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+                    // Parse start and end times based on their formats
+                    val startTime = if (startTimeString.length == 5) {
+                        dateFormatWithTime.parse("2024-01-01 $startTimeString")
+                    } else {
+                        dateFormatWithTimeAndSeconds.parse("2024-01-01 $startTimeString")
+                    }
+                    val endTime = if (endTimeString.length == 5) {
+                        dateFormatWithTime.parse("2024-01-01 $endTimeString")
+                    } else {
+                        dateFormatWithTimeAndSeconds.parse("2024-01-01 $endTimeString")
+                    }
 
                     // Calculate the duration between start time and end time in milliseconds
                     val durationMillis = endTime.time - startTime.time

@@ -125,11 +125,11 @@ lateinit var timeEntryEndTime : EditText
         }
 
         timeEntryStartTime.setOnClickListener{
-            showTimePickerDialog(isStartTime = true)
+            showTimePickerDialogStart(isStartTime = true)
         }
 
         timeEntryEndTime.setOnClickListener{
-            showTimePickerDialog(isStartTime = true)
+            showTimePickerDialogEnd(isStartTime = true)
         }
 
         logBtn.setOnClickListener {
@@ -485,7 +485,7 @@ lateinit var timeEntryEndTime : EditText
 
 
 
-    private fun showTimePickerDialog(isStartTime : Boolean) {
+    private fun showTimePickerDialogStart(isStartTime : Boolean) {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
@@ -493,11 +493,21 @@ lateinit var timeEntryEndTime : EditText
         val timePickerDialog = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
             // Format the time chosen by the user (HH:mm).
             val selectedTime = String.format(Locale.getDefault(), "%02d:%02d", selectedHour,selectedMinute)
-            if (isStartTime) {
-                timeEntryStartTime.setText(selectedTime)
-            } else {
-                timeEntryEndTime.setText(selectedTime)
-            }
+            timeEntryStartTime.setText(selectedTime)
+        }, hour, minute, true)
+
+        timePickerDialog.show()
+    }
+
+    private fun showTimePickerDialogEnd(isStartTime : Boolean) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
+            // Format the time chosen by the user (HH:mm).
+            val selectedTime = String.format(Locale.getDefault(), "%02d:%02d", selectedHour,selectedMinute)
+            timeEntryEndTime.setText(selectedTime)
         }, hour, minute, true)
 
         timePickerDialog.show()

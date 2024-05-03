@@ -211,12 +211,21 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
 
                     val currentEntry = TimeEntryHomeDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateentry, 0.0)
 
-                    // Convert start time and end time to Date objects
-                    // Convert start time and end time to Date objects
-                    val dummyDate = "2024-01-01 "
-                    val startTime = SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dummyDate + startTimeString)
-                    val endTime = SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dummyDate + endTimeString)
+                    // Define the date format for parsing
+                    val dateFormatWithTime = SimpleDateFormat("yyyy-MM-dd HH:mm")
+                    val dateFormatWithTimeAndSeconds = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
+                    // Parse start and end times based on their formats
+                    val startTime = if (startTimeString.length == 5) {
+                        dateFormatWithTime.parse("2024-01-01 $startTimeString")
+                    } else {
+                        dateFormatWithTimeAndSeconds.parse("2024-01-01 $startTimeString")
+                    }
+                    val endTime = if (endTimeString.length == 5) {
+                        dateFormatWithTime.parse("2024-01-01 $endTimeString")
+                    } else {
+                        dateFormatWithTimeAndSeconds.parse("2024-01-01 $endTimeString")
+                    }
 
                     // Calculate the duration between start time and end time in milliseconds
                     val durationMillis = endTime.time - startTime.time
