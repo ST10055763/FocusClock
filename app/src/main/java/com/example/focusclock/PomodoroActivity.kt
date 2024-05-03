@@ -214,7 +214,7 @@ class PomodoroActivity : AppCompatActivity() {
 
     fun getCurrentDate(): String {
         val currentDate = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        val formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy")
         return formatter.format(currentDate)
     }
 
