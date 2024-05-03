@@ -181,7 +181,8 @@ class FilterInformationActivty : AppCompatActivity() {
                             if (endDate.after(startDate)) {
 
                                 // Pass the correct string dates to the function
-                                fetchAndPopulateFireStoreDateEntries(userId, startDateText, endDateText)
+                                // fetchAndPopulateFireStoreDateEntries(userId, startDateText, endDateText)
+                                fetchAndPopulateFireStoreDateEntries2(userId, startDateText, endDateText)
                             } else {
                                 Toast.makeText(this, "End date must be after start date", Toast.LENGTH_SHORT).show()
                             }
@@ -317,6 +318,71 @@ class FilterInformationActivty : AppCompatActivity() {
             return
         }
     }
+
+    private fun fetchAndPopulateFireStoreDateEntries2(userID: String?, startDate: String, endDate: String) {
+        val entriesRef = db.collection("time_entries")
+        val dateFormatter = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
+        val startDateDate = dateFormatter.parse(startDate)
+        val endDateDate = dateFormatter.parse(endDate)
+
+        if (startDateDate != null && endDateDate != null) {
+            entriesRef
+                .whereEqualTo("firebaseUUID", userID)
+                .get()
+                .addOnSuccessListener { querySnapshot ->
+                    for (document in querySnapshot.documents) {
+                        val dateEntryString = document.getString("currentDate") ?: ""
+                        val dateEntryDate = dateFormatter.parse(dateEntryString)
+
+                        if (dateEntryDate >= startDateDate && dateEntryDate <= endDateDate) {
+                            val firebaseUUID = document.getString("firebaseUUID") ?: ""
+                            val startTimeString = document.getString("startTime") ?: ""
+                            val endTimeString = document.getString("endTime") ?: ""
+                            val selectedTask = document.getString("selectedTask") ?: ""
+                            val entryProject = document.getString("entryProject") ?: ""
+                            val timeEntryPicRef = document.getString("timeEntryPicRef") ?: ""
+
+                            val currentEntry = TimeEntryFilterDisplay(firebaseUUID, startTimeString, endTimeString, selectedTask, entryProject, timeEntryPicRef, dateEntryString, "")
+
+                            val dateFormatWithTime = SimpleDateFormat("MM-dd-yyyy HH:mm")
+                            val dateFormatWithTimeAndSeconds = SimpleDateFormat("MM-dd-yyyy HH:mm:ss")
+
+                            val startTime = if (startTimeString.length == 5) {
+                                dateFormatWithTime.parse("01-01-2024 $startTimeString")
+                            } else {
+                                dateFormatWithTimeAndSeconds.parse("01-01-2024 $startTimeString")
+                            }
+                            val endTime = if (endTimeString.length == 5) {
+                                dateFormatWithTime.parse("01-01-2024 $endTimeString")
+                            } else {
+                                dateFormatWithTimeAndSeconds.parse("01-01-2024 $endTimeString")
+                            }
+
+                            val durationMillis = endTime.time - startTime.time
+                            val hours = durationMillis / (1000 * 60 * 60)
+                            val minutes = (durationMillis % (1000 * 60 * 60)) / (1000 * 60)
+                            val seconds = ((durationMillis % (1000 * 60 * 60)) % (1000 * 60)) / 1000
+                            val formattedDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+
+                            currentEntry.durationTask = formattedDuration
+                            timeentries.add(currentEntry)
+                        }
+                    }
+                    // After fetching data, update the RecyclerView adapter with the new data
+                    recadapter.notifyDataSetChanged()
+
+                    if (timeentries.isEmpty()) {
+                        Toast.makeText(this, "No tasks found within the selected date range", Toast.LENGTH_SHORT).show()
+                    }
+
+                    recadapter.notifyDataSetChanged()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error fetching tasks: $it", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+
 
 
 
