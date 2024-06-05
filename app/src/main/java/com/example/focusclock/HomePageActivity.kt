@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -149,6 +150,8 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
                             tvHomeHours.setText("${hoursToday} / ${minHours} Hours Done Today")
                             tvHomeTasksDone.setText("${tasksDone} Tasks Completed Today")
 
+                            updateOrCreateEntry(firebaseUUID, currentDate, hoursToday, minHours, maxHours)
+
                         } else {
                             // fname is null, handle appropriately
                             Toast.makeText(this, "Failed to retrieve first name", Toast.LENGTH_SHORT).show()
@@ -174,6 +177,8 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
         btnMaxGoals.setOnClickListener{
             tvHomeHours.setText("${hoursToday} / ${maxHours} Hours Done Today")
         }
+
+
 
     }
 
@@ -253,5 +258,59 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
                 adapter.notifyDataSetChanged()
             }
     }
+
+    private fun updateOrCreateEntry(firebaseUUID: String, currentDate: String, newTotalHours: Double, minHours: Int, maxHours: Int) {
+        val db = FirebaseFirestore.getInstance()
+        val collectionRef = db.collection("daily_entries")
+
+        // Create a query to find the matching document
+        val query = collectionRef
+            .whereEqualTo("firebaseUUID", firebaseUUID)
+            .whereEqualTo("currentDate", currentDate)
+
+        query
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val result: QuerySnapshot? = task.result
+                    if (result != null && !result.isEmpty) {
+                        // Match found, update the totalHours field
+                        val documentId = result.documents[0].id
+                        val documentRef = collectionRef.document(documentId)
+                        documentRef.update(
+                            "totalHours", newTotalHours.toString(),
+                            "mingoal", minHours.toString(),
+                            "maxgoal", maxHours.toString()
+                        )
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Document updated successfully", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Error updating document: $e", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
+                        // No match found, create a new entry
+                        val newEntry = DailyEntry(
+                            currentDate = currentDate,
+                            firebaseUUID = firebaseUUID,
+                            mingoal = minHours.toString(),
+                            maxgoal = maxHours.toString(),
+                            totalHours = newTotalHours.toString()
+                        )
+
+                        collectionRef.add(newEntry)
+                            .addOnSuccessListener { documentReference ->
+                                Toast.makeText(this, "Document added with ID: ${documentReference.id}", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Error adding document: $e", Toast.LENGTH_SHORT).show()
+                            }
+                    }
+                } else {
+                    Toast.makeText(this, "Error getting documents: ${task.exception}", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
 
 }
