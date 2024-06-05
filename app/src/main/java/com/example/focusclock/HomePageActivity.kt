@@ -15,9 +15,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -123,7 +124,6 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
 
         // fetch data here
         fetchAndPopulateFireStoreHomeEntries(firebaseUUID, currentDate)
-        //hoursToday = String.format("%.3f", hoursToday).toDouble()
 
         tvDateHeader = findViewById(R.id.tvHomePageDateHeader)
         tvDateHeader.setText("Here's Todays Schedule " + currentDate)
@@ -190,8 +190,7 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
         startActivity(intent)
     }
 
-    private fun fetchAndPopulateFireStoreHomeEntries(userID: String?, currentDate: String)
-    {
+    private fun fetchAndPopulateFireStoreHomeEntries(userID: String?, currentDate: String) {
         val entriesref = db.collection("time_entries")
         entriesref
             .whereEqualTo("firebaseUUID", userID)
@@ -236,16 +235,19 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
                     // Update total hours
                     hoursToday += hours
                     //currentEntry.durationTask = hours
-                    currentEntry.durationTask = String.format("%.3f", hours).toDouble()
+                    currentEntry.durationTask = String.format(Locale.US, "%.3f", hours).replace(",", ".").toDouble()
 
                     // Format hoursToday here
-                    hoursToday = String.format("%.3f", hoursToday).toDouble()
+                    hoursToday = String.format(Locale.US, "%.3f", hoursToday).replace(",", ".").toDouble()
 
                     timeentries.add(currentEntry)
                 }
 
+                // Format hoursToday for display
+                val formattedHoursToday = String.format(Locale.US, "%.3f", hoursToday).replace(",", ".")
+
                 // Update UI after processing all documents
-                tvHomeHours.setText("${hoursToday} / x Done Today")
+                tvHomeHours.setText("$formattedHoursToday / x Done Today")
                 tvHomeTasksDone.setText("${tasksDone} Tasks Completed Today")
                 // After fetching data, notify the adapter of the change
                 adapter.notifyDataSetChanged()
