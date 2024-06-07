@@ -35,6 +35,8 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
     private lateinit var homeButton: ImageButton
     private lateinit var projectButton: ImageButton
     private lateinit var addTimeEntryButton: FloatingActionButton
+    private lateinit var ViewLineGraph: FloatingActionButton
+    private lateinit var ViewBarGraph : FloatingActionButton
 
     private lateinit var tvDateHeader : TextView
     private lateinit var tvUserHeader: TextView
@@ -97,6 +99,16 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
             var addTimeIntent = Intent(this, AddATimeEntryActivity::class.java)
             startActivity(addTimeIntent)
         }
+        ViewLineGraph = findViewById(R.id.ViewLineGraphfloatingbtn)
+        ViewLineGraph.setOnClickListener{
+            var viewLineBarIntent = Intent(this, BarGraph::class.java)
+            startActivity(viewLineBarIntent)
+        }
+        ViewBarGraph = findViewById(R.id.ViewBarGraphfloatingBtn)
+        ViewBarGraph.setOnClickListener{
+            //add redirection to kiashen's line graph page here
+        }
+
 
         var maxHours: Int = 0
         var minHours: Int = 0
