@@ -221,26 +221,26 @@
         android:id="@+id/ViewLineGraphfloatingbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="36dp"
         android:layout_marginBottom="20dp"
         android:autofillHints="Line Graph"
         android:clickable="true"
+        android:contentDescription="Line Graph"
         app:layout_constraintBottom_toTopOf="@+id/navbarPomodoro"
         app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="Line Graph"/>
+        tools:srcCompat="@tools:sample/avatars" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ViewBarGraphfloatingBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="20dp"
         android:autofillHints="Bar Graph"
         android:clickable="true"
+        android:contentDescription="Bar Graph"
         app:layout_constraintBottom_toTopOf="@+id/navbarPomodoro"
         app:layout_constraintStart_toEndOf="@+id/ViewLineGraphfloatingbtn"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="Bar Graph"/>
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
