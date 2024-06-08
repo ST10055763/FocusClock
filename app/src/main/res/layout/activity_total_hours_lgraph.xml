@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TotalHoursLGraphActivity">
+
+    <TextView
+        android:id="@+id/tvTHLGHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Hours Graph"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <TextView
+        android:id="@+id/tvTHLGSubHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View The Total Hours Worked Daily for a Selectble Period"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="91dp" />
+
+    <ImageView
+        android:id="@+id/ivFIDateBack"
+        android:layout_width="382dp"
+        android:layout_height="72dp"
+        android:background="@color/fcBlue"
+        android:backgroundTint="@color/fcBlue"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="157dp"
+        tools:srcCompat="#6279E0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatActBtnTHLGSearch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:clickable="true"
+        android:contentDescription="search"
+        app:backgroundTint="#FF7F7F"
+        app:srcCompat="@android:drawable/ic_menu_search"
+        tools:layout_editor_absoluteX="341dp"
+        tools:layout_editor_absoluteY="172dp" />
+
+    <EditText
+        android:id="@+id/edtTHLGEndDate"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="End Date"
+        android:inputType="date"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="172dp" />
+
+    <TextView
+        android:id="@+id/tvTHLGDateRangeHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Date Range:"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="138dp" />
+
+    <EditText
+        android:id="@+id/edtTHLGStartDate"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Start Date"
+        android:inputType="date"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="172dp" />
+
+    <TextView
+        android:id="@+id/tvTHLGGraphHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Line Graph:"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="374dp"
+        android:layout_height="382dp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="268dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

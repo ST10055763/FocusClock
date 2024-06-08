@@ -25,6 +25,9 @@
         android:theme="@style/Theme.FocusClock"
         tools:targetApi="31">
         <activity
+            android:name=".TotalHoursLGraphActivity"
+            android:exported="false" />
+        <activity
             android:name=".BarGraph"
             android:exported="false" />
         <activity
