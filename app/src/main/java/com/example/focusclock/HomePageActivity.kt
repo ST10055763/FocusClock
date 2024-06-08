@@ -101,12 +101,14 @@ class HomePageActivity : AppCompatActivity(), HomePageAdapter.OnItemClickListene
         }
         ViewLineGraph = findViewById(R.id.ViewLineGraphfloatingbtn)
         ViewLineGraph.setOnClickListener{
-            var viewLineBarIntent = Intent(this, BarGraph::class.java)
-            startActivity(viewLineBarIntent)
+            //add redirection to kiashen's line graph page here
+            var viewLineIntent = Intent(this, TotalHoursLGraphActivity::class.java)
+            startActivity(viewLineIntent)
         }
         ViewBarGraph = findViewById(R.id.ViewBarGraphfloatingBtn)
         ViewBarGraph.setOnClickListener{
-            //add redirection to kiashen's line graph page here
+            var viewBarIntent = Intent(this, BarGraph::class.java)
+            startActivity(viewBarIntent)
         }
 
 
