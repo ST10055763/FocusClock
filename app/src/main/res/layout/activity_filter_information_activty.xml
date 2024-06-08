@@ -151,12 +151,12 @@
         android:layout_height="74dp"
         android:background="@color/fcBlue"
         android:backgroundTint="@color/fcBlue"
-        app:layout_constraintBottom_toTopOf="@+id/tvFIEntries"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.322"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.802"
+        app:layout_constraintVertical_bias="0.365"
         tools:srcCompat="@color/fcBlue" />
 
     <EditText
@@ -167,26 +167,27 @@
         android:hint="Start Date"
         android:inputType="date"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/recViewFIEntries"
-        app:layout_constraintEnd_toStartOf="@+id/edtFIEndDate"
-        app:layout_constraintHorizontal_bias="0.161"
-        app:layout_constraintStart_toStartOf="@+id/ivFIDateBack"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerFPFilterBy"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.376" />
 
     <EditText
         android:id="@+id/edtFIEndDate"
         android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="End Date"
         android:inputType="date"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/ivFIDateBack"
-        app:layout_constraintHorizontal_bias="0.896"
-        app:layout_constraintStart_toStartOf="@+id/ivFIDateBack"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerFPFilterBy" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.376" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatActBtnFISearch"
@@ -207,10 +208,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Entries:"
-        app:layout_constraintBottom_toTopOf="@+id/recViewFIEntries"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recViewFIEntries"
@@ -218,8 +221,9 @@
         android:layout_height="281dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtFIEndDate" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.768" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

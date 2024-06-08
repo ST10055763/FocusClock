@@ -1,6 +1,7 @@
 package com.example.focusclock
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
@@ -33,6 +34,7 @@ class TotalHoursLGraphActivity : AppCompatActivity() {
     private lateinit var etStartDate: EditText
     private lateinit var etEndDate: EditText
     private lateinit var lineChart: LineChart
+    private lateinit var returnHome: FloatingActionButton
 
     private var minHours: Int = 0
     private var maxHours: Int = 0
@@ -45,6 +47,13 @@ class TotalHoursLGraphActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        returnHome = findViewById(R.id.returnHomeBtn)
+        returnHome.setOnClickListener{
+            //add redirection to kiashen's line graph page here
+            var goHomeIntent = Intent(this, HomePageActivity::class.java)
+            startActivity(goHomeIntent)
         }
 
         etStartDate = findViewById(R.id.edtTHLGStartDate)

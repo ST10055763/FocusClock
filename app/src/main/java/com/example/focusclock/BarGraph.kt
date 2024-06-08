@@ -1,5 +1,6 @@
 package com.example.focusclock
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
 import android.util.Log
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.lang.RuntimeException
@@ -24,6 +26,7 @@ import java.lang.RuntimeException
 class BarGraph : AppCompatActivity() {
     private lateinit var barChart: BarChart
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var returnHome: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,6 +35,13 @@ class BarGraph : AppCompatActivity() {
         //variables
         barChart = findViewById(R.id.bar_chart)
         firestore = FirebaseFirestore.getInstance()
+
+        returnHome = findViewById(R.id.returnHomeFloatBtn)
+        returnHome.setOnClickListener{
+            //add redirection to kiashen's line graph page here
+            var goHomeIntent = Intent(this, HomePageActivity::class.java)
+            startActivity(goHomeIntent)
+        }
 
         val user = Firebase.auth.currentUser
         val userId = user?.uid
@@ -62,6 +72,8 @@ class BarGraph : AppCompatActivity() {
 
         firestore.collection("daily_entries")
             .whereEqualTo("firebaseUUID", userID)
+            .whereGreaterThanOrEqualTo("currentDate", startDateObject)
+            .whereLessThanOrEqualTo("currentDate", endDateObject)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 Log.d("FETCH_DATA", "Data retrieved successfully. Document count: ${querySnapshot.documents.size}")

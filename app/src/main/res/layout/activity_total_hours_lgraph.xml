@@ -11,50 +11,55 @@
         android:id="@+id/tvTHLGHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:text="Total Hours Graph"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
 
     <TextView
         android:id="@+id/tvTHLGSubHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
         android:text="View The Total Hours Worked Daily for a Selectble Period"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127" />
 
     <ImageView
         android:id="@+id/ivFIDateBack"
         android:layout_width="382dp"
         android:layout_height="72dp"
-        android:layout_marginTop="160dp"
         android:background="@color/fcBlue"
         android:backgroundTint="@color/fcBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253"
         tools:srcCompat="#6279E0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatActBtnTHLGSearch"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:clickable="true"
         android:contentDescription="search"
         app:backgroundTint="#FF7F7F"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFIDateBack"
         app:layout_constraintEnd_toEndOf="@+id/ivFIDateBack"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/edtTHLGEndDate"
         app:layout_constraintTop_toTopOf="@+id/ivFIDateBack"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
@@ -62,6 +67,7 @@
         android:id="@+id/edtTHLGEndDate"
         android:layout_width="150dp"
         android:layout_height="48dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="68dp"
         android:layout_marginBottom="12dp"
         android:ems="10"
@@ -69,28 +75,33 @@
         android:inputType="date"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/ivFIDateBack"
-        app:layout_constraintEnd_toEndOf="@+id/ivFIDateBack" />
+        app:layout_constraintEnd_toEndOf="@+id/ivFIDateBack"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toEndOf="@+id/edtTHLGStartDate"
+        app:layout_constraintTop_toTopOf="@+id/ivFIDateBack"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvTHLGDateRangeHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
         android:text="Enter Date Range:"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186" />
 
     <EditText
         android:id="@+id/edtTHLGStartDate"
         android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Start Date"
         android:inputType="date"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFIDateBack"
         app:layout_constraintEnd_toEndOf="@+id/ivFIDateBack"
         app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="@+id/ivFIDateBack"
@@ -100,21 +111,37 @@
         android:id="@+id/tvTHLGGraphHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
         android:text="Line Graph:"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.351" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="374dp"
         android:layout_height="382dp"
-        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.351"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.793" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/returnHomeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="return home button for line graph"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.991"
+        app:srcCompat="@drawable/home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
