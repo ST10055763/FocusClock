@@ -72,8 +72,8 @@ class BarGraph : AppCompatActivity() {
 
         firestore.collection("daily_entries")
             .whereEqualTo("firebaseUUID", userID)
-            .whereGreaterThanOrEqualTo("currentDate", startDateObject)
-            .whereLessThanOrEqualTo("currentDate", endDateObject)
+            //.whereGreaterThanOrEqualTo("currentDate", startDateObject)
+            //.whereLessThanOrEqualTo("currentDate", endDateObject)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 Log.d("FETCH_DATA", "Data retrieved successfully. Document count: ${querySnapshot.documents.size}")
@@ -81,7 +81,6 @@ class BarGraph : AppCompatActivity() {
                 val studyData = mutableListOf<StudyEntry>()
                 var minGoal = 0
                 var maxGoal = 0
-
 
                 querySnapshot.documents.forEachIndexed { index, document ->
                     try {
@@ -92,8 +91,11 @@ class BarGraph : AppCompatActivity() {
                         val totalHours = document.getString("totalHours") ?: "0"
                         val tHours = totalHours.toFloatOrNull() ?: 0.0f
 
-                        val currentEntry = DailyEntry(currentDate, maxgoal, mingoal, totalHours)
-                        studyData.add(StudyEntry(currentDate, tHours))
+                        //if statement to check the date for current month
+                        if (currentDate >= startDate && currentDate <= endDate) {
+                            val currentEntry = DailyEntry(currentDate, maxgoal, mingoal, totalHours)
+                            studyData.add(StudyEntry(currentDate, tHours))
+                        }
 
                         minGoal = mingoal.toInt()
                         maxGoal = maxgoal.toInt()
